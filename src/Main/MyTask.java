@@ -9,12 +9,12 @@ import java.util.ArrayList;
 
 public class MyTask {
     public MyTask(){
-        AreaBuffet areaBuffet = new AreaBuffet("tacos",1);
+        AreaBuffet areaBuffet = new AreaBuffet("tacos",100);
 
         ArrayList<Comensal> comensals = new ArrayList<>();
         ArrayList<Chef> chefs = new ArrayList<>();
         ArrayList<Grill> grills = new ArrayList<>();
-        Grill grill = new Grill(areaBuffet,10);
+        Grill grill = new Grill(areaBuffet,100);
         Rellotge rellotge = Rellotge.getInstance();
         Thread thread = new Thread(rellotge);
         thread.start();

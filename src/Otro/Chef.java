@@ -91,7 +91,7 @@ public class Chef implements Runnable {
 
             System.out.println("entregando");
             this.setEstatchef(Estatchef.entregant);
-            this.grill.getAreaBuffet().afegirplat();
+            this.getGrill().afegirplat();
 
 
     }
@@ -173,13 +173,16 @@ public class Chef implements Runnable {
 
     @Override
     public void run() {
+while (true){
+    try {
 
-            try {
+        cuinar();
+    } catch (InterruptedException e) {
+        throw new RuntimeException(e);
 
-                cuinar();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+    }
+
+}
 
         }
 

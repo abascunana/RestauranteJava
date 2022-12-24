@@ -29,6 +29,7 @@ public class RestaurantController implements Runnable{
     public synchronized void pause()  {
         try {
             wait();
+            System.out.println("dormido");
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

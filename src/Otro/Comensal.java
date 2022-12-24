@@ -113,7 +113,7 @@ public class Comensal implements Runnable{
        agafarPlat(getAreaBuffet());
        int minInicio = this.getRellotge().getMinutActual();
        int numbre= rm.nextInt( this.getRm().getPs().tempsConsumir.getMin(), this.getRm().getPs().tempsConsumir.getMax());
-         if (this.getRellotge().getInterval(minInicio) == numbre) {
+         if (this.getRellotge().getInterval(minInicio) >= numbre) {
 
              tertulia();
 
