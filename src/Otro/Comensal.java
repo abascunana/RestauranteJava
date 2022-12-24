@@ -123,12 +123,13 @@ public class Comensal implements Runnable{
     }
 
     public void tertulia()  {
-
             this.setStatuscm(Statuscm.xerrant);
             this.tempsTertulia+=1;
             Random rm = new Random();
             int minInicio = this.getRellotge().getMinutActual();
             int numbre= rm.nextInt( this.getRm().getPs().tempsTertulia.getMin(), this.getRm().getPs().tempsTertulia.getMax());
+        //TODO EL RELOJ TIENE QUE INICIALSE EN OTRO LUGAR O MODIFICARLO PARA QUE NO VAYA TAN RÁPIDO
+
             if (this.getRellotge().getInterval(minInicio) >=this.getRellotge().convertirTemps( numbre) ){
                 for (int i = 0; i < getRm().getAb().size(); i++) {
                     if (getRm().getAb().get(i).getQuantitatActual() > 0){

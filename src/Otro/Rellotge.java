@@ -10,7 +10,7 @@ public class Rellotge implements Runnable{
 
     private Rellotge() {
         this.minutActual = 0;
-        this.multiplicadorTemps = 100;
+        this.multiplicadorTemps = 1000;
     }
 
 
@@ -39,7 +39,7 @@ public class Rellotge implements Runnable{
         return temps;
     }
 
-
+//Esto lo que hace es que cada actividad (descansar, cocinar...) pueda calcular el intervalo de inicio de actividad al tiempo transcurrido al realizar la actividad
     public int getInterval(int minutInicioActividad){
         return getMinutActual() - minutInicioActividad;
     }

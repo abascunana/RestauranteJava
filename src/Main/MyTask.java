@@ -22,7 +22,7 @@ public class MyTask {
         Chef chef = new Chef(rellotge,grill,areaBuffet);
         chefs.add(chef);
         comensals.add(comensal);
-
+        areaBuffet.setGrill(grill);
         RestaurantModel restaurantModel = new RestaurantModel(comensals,chefs,rellotge);
         restaurantModel.getAb().add(areaBuffet);
         comensal.setRm(restaurantModel);

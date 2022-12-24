@@ -4,6 +4,15 @@ public class AreaBuffet extends BufferPlats{
 
     private ColaPlatsCuinats colaPlatCuinats;
 
+    private Grill grill;
+
+    public Grill getGrill() {
+        return grill;
+    }
+
+    public void setGrill(Grill grill) {
+        this.grill = grill;
+    }
 
     private String descripcio;
 

@@ -82,6 +82,8 @@ public class Chef implements Runnable {
             Random rm = new Random();
             int numbre = rm.nextInt(this.getRm().getPs().tempsDescans.getMin(), this.getRm().getPs().tempsDescans.getMax());
             System.out.println("descansando");
+            //ESTO HACE LA SIMULACIÓN MÁS REALISTA PERO ESPERA TODOS LOS MINUTOS, QUITAR SI SE VE NECESARIO
+            //Thread.sleep(this.getRellotge().getMiliEnMinuts(numbre));
             Thread.sleep(this.getRellotge().minutsEnMilisegons(numbre));
 
     }
@@ -89,7 +91,7 @@ public class Chef implements Runnable {
 
             System.out.println("entregando");
             this.setEstatchef(Estatchef.entregant);
-            this.getAreaBuffet().afegirplat();
+            this.grill.getAreaBuffet().afegirplat();
 
 
     }
