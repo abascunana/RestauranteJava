@@ -173,7 +173,7 @@ public class Chef implements Runnable {
 
     @Override
     public void run() {
-while (true){
+
     try {
 
         cuinar();
@@ -182,7 +182,7 @@ while (true){
 
     }
 
-}
+
 
         }
 
