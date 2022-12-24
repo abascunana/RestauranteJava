@@ -105,7 +105,7 @@ public class Comensal implements Runnable{
 
     }
 
-     public void menjar() throws InterruptedException {
+     public void menjar() {
        this.setStatuscm(Statuscm.menjant);
        this.tempsMenjat+=1;
       System.out.println("comiendo");
@@ -122,8 +122,8 @@ public class Comensal implements Runnable{
 
     }
 
-    public void tertulia() throws InterruptedException {
-        while (true){
+    public void tertulia()  {
+
             this.setStatuscm(Statuscm.xerrant);
             this.tempsTertulia+=1;
             Random rm = new Random();
@@ -132,20 +132,15 @@ public class Comensal implements Runnable{
             if (this.getRellotge().getInterval(minInicio) >=this.getRellotge().convertirTemps( numbre) ){
                 for (int i = 0; i < getRm().getAb().size(); i++) {
                     if (getRm().getAb().get(i).getQuantitatActual() > 0){
-                       menjar();
+                        menjar();
                     }
         }
 
             }
-
-
-        }
-
-
     }
 
 
-    public void agafarPlat(AreaBuffet areaBuffet) throws InterruptedException {
+    public void agafarPlat(AreaBuffet areaBuffet)  {
         this.setStatuscm(Statuscm.agafantPlat);
         System.out.println("agafarplat");
         this.platsMenjats+=1;
@@ -158,11 +153,10 @@ public class Comensal implements Runnable{
 
     @Override
     public void run() {
-        try {
+        while (true){
             tertulia();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
         }
+
 
     }
 }
