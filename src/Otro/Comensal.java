@@ -110,7 +110,7 @@ public class Comensal implements Runnable{
        this.tempsMenjat+=1;
       System.out.println("comiendo");
        Random rm = new Random();
-         agafarPlat(getAreaBuffet());
+       agafarPlat(getAreaBuffet());
        int minInicio = this.getRellotge().getMinutActual();
        int numbre= rm.nextInt( this.getRm().getPs().tempsConsumir.getMin(), this.getRm().getPs().tempsConsumir.getMax());
          if (this.getRellotge().getInterval(minInicio) == numbre) {
@@ -151,7 +151,7 @@ public class Comensal implements Runnable{
         this.platsMenjats+=1;
         areaBuffet.retirarPlat();
         System.out.println(platsMenjats);
-        menjar();
+
 
     }
 
@@ -160,7 +160,6 @@ public class Comensal implements Runnable{
     public void run() {
         try {
             tertulia();
-
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

@@ -77,14 +77,13 @@ public class Chef implements Runnable {
 
 
     public void descansar() throws InterruptedException {
-        while (true) {
+
             this.setEstatchef(Estatchef.descansant);
             Random rm = new Random();
             int numbre = rm.nextInt(this.getRm().getPs().tempsDescans.getMin(), this.getRm().getPs().tempsDescans.getMax());
             System.out.println("descansando");
             Thread.sleep(this.getRellotge().minutsEnMilisegons(numbre));
-             cuinar();
-        }
+
     }
     public void entregarPlat() throws InterruptedException {
 
