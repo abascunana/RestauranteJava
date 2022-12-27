@@ -62,9 +62,6 @@ public class RestaurantModel {
         this.rl = rl;
     }
 
-    public RestaurantModel(){
-
-    }
 
 public void getEstadistiques(){
         //el tiempo en el que cocinero y cliente han hecho cosas (tertulia,descanso etc)

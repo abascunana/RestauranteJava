@@ -3,10 +3,22 @@ package Vista;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+
+import Controlador.RestaurantController;
 import Otro.*;
 
 public class RestaurantView extends JFrame implements Runnable {
+    JPanel[] jPanels = new JPanel[36];
 
+    public RestaurantController getController() {
+        return controller;
+    }
+
+    public void setController(RestaurantController controller) {
+        this.controller = controller;
+    }
+
+    public RestaurantController controller;
         private static final long serialVersionUID = -6829833718886341887L;
         //Jframe principal
         public RestaurantView() {
@@ -85,7 +97,6 @@ public class RestaurantView extends JFrame implements Runnable {
             c.gridx=0;
             c.weighty=2;
             paneli.add(filler,c);
-            JPanel[] jPanels = new JPanel[36];
 
 //Borrar el resto de la vista, pero esto se queda (son los clientes)
             for (int i = 0; i < 36; i++) {
@@ -167,7 +178,8 @@ public class RestaurantView extends JFrame implements Runnable {
 
     @Override
     public void run() {
-        //Utilizado para actualizar los paneles de la vista dependiendo de lo que envíe el controlador
+            controller.getEstadistiques();
+        //Utilizado para actualizar los paneles de la vista dependiendo de lo que envíe el controlador en sus estadísticas
 
     }
 }

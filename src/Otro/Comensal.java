@@ -125,6 +125,7 @@ public class Comensal implements Runnable{
     public void tertulia()  {
             this.setStatuscm(Statuscm.xerrant);
             this.tempsTertulia+=1;
+
             Random rm = new Random();
             int minInicio = this.getRellotge().getMinutActual();
             int numbre= rm.nextInt( this.getRm().getPs().tempsTertulia.getMin(), this.getRm().getPs().tempsTertulia.getMax());

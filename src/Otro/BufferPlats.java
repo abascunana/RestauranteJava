@@ -32,19 +32,21 @@ public  class BufferPlats {
         while(quantitatActual == capacitatMaxima) {
             try {
                 System.out.println("dormido");
+
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
       quantitatActual++;
+
         notifyAll();
     }
 
     public synchronized void retirarPlat(){
         while(quantitatActual == 0) {
             try {
-                System.out.println("dormido");
+                System.out.println("Resucitado");
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -52,7 +54,7 @@ public  class BufferPlats {
         }
         quantitatActual--;
         notifyAll();
-        System.out.println("Resucitado");
+
     }
 
 }

@@ -1,8 +1,19 @@
 package Otro;
 
 public class ColaPlatsCuinats extends BufferPlats{
+
+
+    public AreaBuffet areaBuffet;
     public ColaPlatsCuinats(int capacitatMaxima) {
         super(capacitatMaxima);
+    }
+
+    public AreaBuffet getAreaBuffet() {
+        return areaBuffet;
+    }
+
+    public void setAreaBuffet(AreaBuffet areaBuffet) {
+        this.areaBuffet = areaBuffet;
     }
 
     @Override

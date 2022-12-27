@@ -6,7 +6,7 @@ public class Grill extends BufferPlats {
     private AreaBuffet areaBuffet;
     private RestaurantModel rm;
     private boolean enServei;
-    private BufferPlats colaPlatCuinats;
+    private ColaPlatsCuinats colaPlatCuinats;
 
     public AreaBuffet getAreaBuffet() {
         return areaBuffet;
@@ -24,18 +24,18 @@ public class Grill extends BufferPlats {
         this.rm = rm;
     }
 
-    public BufferPlats getColaPlatCuinats() {
+    public ColaPlatsCuinats getColaPlatCuinats() {
         return colaPlatCuinats;
     }
 
-    public void setColaPlatCuinats(BufferPlats colaPlatCuinats) {
+    public void setColaPlatCuinats(ColaPlatsCuinats colaPlatCuinats) {
         this.colaPlatCuinats = colaPlatCuinats;
     }
 
 
     @Override
     public synchronized void afegirplat() {
-        getAreaBuffet().afegirplat();
+   getColaPlatCuinats().getAreaBuffet().afegirplat();
     }
 
     public synchronized void posarEnServei(){
@@ -53,12 +53,12 @@ public class Grill extends BufferPlats {
         this.enServei = enServei;
     }
 
-    public Grill(AreaBuffet areaBuffet, int cm) {
+    public Grill(AreaBuffet areaBuffet, int cm,ColaPlatsCuinats cps) {
         super(cm);
         this.areaBuffet = areaBuffet;
         this.posarEnServei();
         //No entiendo muy bien para que srve esta variable
-        this.colaPlatCuinats = new BufferPlats(cm);
+        this.colaPlatCuinats =cps;
 
     }
 

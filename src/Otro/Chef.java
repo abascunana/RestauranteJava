@@ -46,7 +46,7 @@ public class Chef implements Runnable {
         this.tempsEspera = 0;
         this.rellotge = rellotge;
         this.grill = grill;
-        this.rm = new RestaurantModel();
+
         this.areaBuffet = areaBuffet;
 
     }
@@ -69,6 +69,7 @@ public class Chef implements Runnable {
                     }
                 }
             }
+        this.grill.setEnServei(false);
         }
 
 
