@@ -3,6 +3,7 @@ package Otro;
 public class AreaBuffet extends BufferPlats{
 
     private ColaPlatsCuinats colaPlatCuinats;
+    public EstadistiquesBuffets estadistiques;
 
     private Grill grill;
 

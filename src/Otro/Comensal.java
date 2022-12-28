@@ -18,6 +18,8 @@ public class Comensal implements Runnable{
     private Estatcomensal Statuscm;
     private int tempsTertulia;
     private ParametresSimulacio parametresSimulacio;
+    private static EstadistiquesComensals status;
+
 
     public AreaBuffet getAreaBuffet() {
         return areaBuffet;

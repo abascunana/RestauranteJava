@@ -26,6 +26,7 @@ public class Chef implements Runnable {
     private Rellotge rellotge;
     private AreaBuffet areaBuffet;
 
+
     public void setRm(RestaurantModel rm) {
         this.rm = rm;
     }
@@ -55,6 +56,7 @@ public class Chef implements Runnable {
         while (this.getAreaBuffet().getColaPlatCuinats().getQuantitatActual() < this.getAreaBuffet().getCapacitatMaxima()) {
                 this.grill.setEnServei(true);
                 this.setEstatchef(Estatchef.cuinant);
+
                 boolean cocinado = false;
                 System.out.println("cocinando");
                 int minInicio;
