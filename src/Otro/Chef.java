@@ -26,6 +26,16 @@ public class Chef implements Runnable {
     private Rellotge rellotge;
     private AreaBuffet areaBuffet;
 
+    public Estadistiques getStats() {
+        return stats;
+    }
+
+    public void setStats(Estadistiques stats) {
+        this.stats = stats;
+    }
+
+    private Estadistiques stats;
+
 
     public void setRm(RestaurantModel rm) {
         this.rm = rm;

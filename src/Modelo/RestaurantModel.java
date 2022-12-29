@@ -64,7 +64,7 @@ public class RestaurantModel {
 
 
 public void getEstadistiques(){
-        //el tiempo en el que cocinero y cliente han hecho cosas (tertulia,descanso etc)
+        //TODO el tiempo en el que cocinero y cliente han hecho cosas (tertulia,descanso etc)
 }
     public RestaurantModel(ArrayList<Comensal> cms, ArrayList<Chef> chefs, Rellotge rellotge) {
         this.abs=new ArrayList<AreaBuffet>();
@@ -84,17 +84,20 @@ public void getEstadistiques(){
 
         this.ps = new ParametresSimulacio(10,11,10);
 
+
+
+
+
+    }
+    public  void start() throws InterruptedException {
         for (int i = 0; i <threads.size() ; i++) {
             threads.get(i).start();
         }
-
-
-
     }
-    public  void play() throws InterruptedException {
+    public synchronized void play() throws InterruptedException {
         controller.play();
-    }
 
+    }
     public synchronized void stop() throws InterruptedException {
       controller.stop();
 

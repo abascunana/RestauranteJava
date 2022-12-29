@@ -18,7 +18,10 @@ public class Comensal implements Runnable{
     private Estatcomensal Statuscm;
     private int tempsTertulia;
     private ParametresSimulacio parametresSimulacio;
-    private static EstadistiquesComensals status;
+
+
+
+    private static Estadistiques stats;
 
 
     public AreaBuffet getAreaBuffet() {
@@ -30,7 +33,13 @@ public class Comensal implements Runnable{
     }
 
     private AreaBuffet areaBuffet;
+    public static Estadistiques getStats() {
+        return stats;
+    }
 
+    public static void setStats(Estadistiques stats) {
+        Comensal.stats = stats;
+    }
 
     public RestaurantModel getRm() {
         return rm;

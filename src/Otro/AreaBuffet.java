@@ -3,7 +3,10 @@ package Otro;
 public class AreaBuffet extends BufferPlats{
 
     private ColaPlatsCuinats colaPlatCuinats;
-    public EstadistiquesBuffets estadistiques;
+
+
+
+    public Estadistiques stats;
 
     private Grill grill;
 
@@ -20,6 +23,14 @@ public class AreaBuffet extends BufferPlats{
     @Override
     public synchronized void afegirplat() {
         super.afegirplat();
+    }
+
+    public Estadistiques getStats() {
+        return stats;
+    }
+
+    public void setStats(Estadistiques stats) {
+        this.stats = stats;
     }
 
     @Override
