@@ -2,12 +2,23 @@ package Controlador;
 
 import Modelo.RestaurantModel;
 import Vista.RestaurantView;
+
+import java.util.ArrayList;
 import java.util.Random;
 import Otro.*;
 
 public class RestaurantController implements Runnable{
     //Esta clase se encarga de las comunicaciones entre el modelo y la vista
     RestaurantModel restaurantModel;
+    public ArrayList<Thread> thread;
+    public RestaurantModel getRestaurantModel() {
+        return restaurantModel;
+    }
+
+    public RestaurantView getRestaurantView() {
+        return restaurantView;
+    }
+
     RestaurantView restaurantView;
 
 
@@ -28,18 +39,23 @@ public class RestaurantController implements Runnable{
     }
     public synchronized void pause()  {
         try {
-            wait();
             System.out.println("dormido");
+            wait();
+
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
     public void stop(){
 
-    };
+        for (int i = 0; i < thread.size(); i++) {
+            thread.get(i).interrupt();
+        }
+    }
     public RestaurantController(RestaurantModel restaurantModel, RestaurantView restaurantView) {
         this.restaurantModel = restaurantModel;
         this.restaurantView = restaurantView;
+        this.thread = restaurantModel.getThreads();
     }
 
 

@@ -10,7 +10,21 @@ public class RestaurantModel {
     private  ArrayList <Grill> gls;
     private  ParametresSimulacio ps;
     private  Rellotge rl;
+
+    public RestaurantController getController() {
+        return controller;
+    }
+
+    public void setController(RestaurantController controller) {
+        this.controller = controller;
+    }
+
     private RestaurantController controller;
+
+    public static ArrayList<Thread> getThreads() {
+        return threads;
+    }
+
     private static ArrayList<Thread> threads;
 
 
@@ -66,17 +80,17 @@ public class RestaurantModel {
 public void getEstadistiques(){
         //TODO el tiempo en el que cocinero y cliente han hecho cosas (tertulia,descanso etc)
 }
-    public RestaurantModel(ArrayList<Comensal> cms, ArrayList<Chef> chefs, Rellotge rellotge) {
+    public RestaurantModel(ArrayList<Comensal> cms, ArrayList<Chef> chefs, Rellotge rellotge,ArrayList<Grill> grills) {
         this.abs=new ArrayList<AreaBuffet>();
-        this.chefs =new ArrayList<Chef>();
+        this.chefs = chefs;
+        this.cms = cms;
         this.threads = new ArrayList<Thread>();
-        this.gls = new ArrayList<Grill>();
+        this.gls =grills;
 
         for (int i = 0; i < chefs.size(); i++) {
 
             threads.add(new Thread(chefs.get(i)));
         }
-        this.cms =new ArrayList<Comensal>();
         for (int i = 0; i < cms.size(); i++) {
             threads.add(new Thread(cms.get(i)));
         }

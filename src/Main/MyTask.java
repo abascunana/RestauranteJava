@@ -6,9 +6,12 @@ import Otro.*;
 import Vista.RestaurantView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MyTask {
     public MyTask(){
+
+        Random random = new Random();
         //Estadísticas
         EstadistiquesComensals estadistiquesComensals = new EstadistiquesComensals();
         EstadistiquesBuffets estadistiquesBuffets = new EstadistiquesBuffets();
@@ -29,8 +32,12 @@ public class MyTask {
         ArrayList<Grill> grills = new ArrayList<>();
         //
 
+        for (int i = 0; i < 3; i++) {
+            Grill grill = new Grill(areaBuffet,100,colaPlatsCuinats);
+            grills.add(grill);
+            areaBuffet.setGrill(grill);
+        }
 
-        Grill grill = new Grill(areaBuffet,100,colaPlatsCuinats);
 
         //Reloj
         Rellotge rellotge = Rellotge.getInstance();
@@ -38,24 +45,23 @@ public class MyTask {
         thread.start();
         ///Elementos del restaurante
 
-        for (int i = 0; i < 36 ; i++) {
+        for (int i = 0; i < 1; i++) {
             Comensal comensal = new Comensal(rellotge);
             comensals.add(comensal);
         }
 
 
-        for (int i = 0; i < 36 ; i++){
-            Chef chef = new Chef(rellotge,grill,areaBuffet);
+        for (int i = 0; i < 3; i++){
+            Chef chef = new Chef(rellotge,grills.get(random.nextInt(grills.size())),areaBuffet);
             chefs.add(chef);
         }
 
 
-        grills.add(grill);
-        areaBuffet.setGrill(grill);
+
 
 
 ///Lógica del restaurante
-        RestaurantModel restaurantModel = new RestaurantModel(comensals,chefs,rellotge);
+        RestaurantModel restaurantModel = new RestaurantModel(comensals,chefs,rellotge,grills);
         restaurantModel.getAb().add(areaBuffet);
         for (int i = 0; i < comensals.size(); i++) {
             comensals.get(i).setRm(restaurantModel);
@@ -72,15 +78,13 @@ public class MyTask {
 
         RestaurantView restaurantView = new RestaurantView();
         RestaurantController restaurantController = new RestaurantController(restaurantModel,restaurantView);
+        restaurantView.setController(restaurantController);
         restaurantController.setEstadistiques(estadistiques);
+        restaurantModel.setController(restaurantController);
 
 
 //Inicialización de los threads
-        try {
-            restaurantModel.start();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
 
     }
 }

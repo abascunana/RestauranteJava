@@ -26,6 +26,17 @@ public class Chef implements Runnable {
     private Rellotge rellotge;
     private AreaBuffet areaBuffet;
 
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
+
+    boolean paused;
+
+
     public Estadistiques getStats() {
         return stats;
     }
@@ -45,9 +56,24 @@ public class Chef implements Runnable {
     public RestaurantModel getRm() {
         return rm;
     }
-                                                                              
 
 
+    public void testPaused(){
+        if (this.isPaused()){
+            try {
+                rm.pause();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        else {
+            try {
+                rm.play();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
     public Chef(Rellotge rellotge, Grill grill, AreaBuffet areaBuffet) {
         this.tempsTotalCuinant = 0;
         this.tempsNoDescans = 0;
@@ -65,6 +91,7 @@ public class Chef implements Runnable {
     public  void cuinar() throws InterruptedException {
         while (this.getAreaBuffet().getColaPlatCuinats().getQuantitatActual() < this.getAreaBuffet().getCapacitatMaxima()) {
                 this.grill.setEnServei(true);
+
                 this.setEstatchef(Estatchef.cuinant);
 
                 boolean cocinado = false;
@@ -188,7 +215,7 @@ public class Chef implements Runnable {
     public void run() {
 
     try {
-
+        testPaused();
         cuinar();
     } catch (InterruptedException e) {
         throw new RuntimeException(e);

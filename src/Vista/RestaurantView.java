@@ -3,13 +3,19 @@ package Vista;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import Controlador.RestaurantController;
-import Otro.*;
 
-public class RestaurantView extends JFrame implements Runnable {
-    JPanel[] jPanels = new JPanel[36];
-
+public class RestaurantView extends JFrame implements Runnable, ActionListener {
+    JPanel[] Cocineros = new JPanel[36];
+    JPanel[] Clientes = new JPanel[12];
+    JButton buttonPause;
+    JButton buttonPlay;
+    JButton buttonStop;
+    JButton buttonStart;
+    //Vista experimental, clientes y cocineros se deben de generar dinámicamente en el thread
     public RestaurantController getController() {
         return controller;
     }
@@ -22,11 +28,12 @@ public class RestaurantView extends JFrame implements Runnable {
         private static final long serialVersionUID = -6829833718886341887L;
         //Jframe principal
         public RestaurantView() {
+            this.controller =  controller;
             setTitle("Ventana de pruebas");
             //localización de aparición
             setLocationRelativeTo(null);
 
-
+            setSize(600,600);
             //Se trabajará con grid bag layout
             setLayout(new GridBagLayout());
             //Al cerrarse que se termine el proceso
@@ -97,18 +104,29 @@ public class RestaurantView extends JFrame implements Runnable {
             c.gridx=0;
             c.weighty=2;
             paneli.add(filler,c);
-
-//Borrar el resto de la vista, pero esto se queda (son los clientes)
+//son los chefs
+            for (int i = 0; i < 9; i++) {
+                c.gridx=1+i;
+                c.weightx = 1;
+                c.weighty = 0;
+                c.fill = GridBagConstraints.BOTH;
+                Border blackline = BorderFactory.createLineBorder(Color.black);
+                Clientes[i] = new JPanel(new GridBagLayout());
+                Clientes[i].setBackground(Color.green);
+                Clientes[i].setBorder(blackline);
+                paneli.add(Clientes[i],c);
+            }
+//son los clientes
             for (int i = 0; i < 36; i++) {
                 c.gridx=1+i;
                 c.weightx = 1;
                 c.weighty = 1;
                 c.fill = GridBagConstraints.BOTH;
                 Border blackline = BorderFactory.createLineBorder(Color.black);
-                jPanels[i] = new JPanel(new GridBagLayout());
-                jPanels[i].setBackground(Color.white);
-                jPanels[i].setBorder(blackline);
-                paneli.add(jPanels[i],c);
+                Cocineros[i] = new JPanel(new GridBagLayout());
+                Cocineros[i].setBackground(Color.white);
+                Cocineros[i].setBorder(blackline);
+                paneli.add(Cocineros[i],c);
             }
 
             Box.Filler filler2 = new Box.Filler(getMaximumSize(),getMinimumSize(),getPreferredSize());
@@ -154,18 +172,29 @@ public class RestaurantView extends JFrame implements Runnable {
             c.gridx = 0;
 
 
-            JButton buttonPause = new JButton("Pausa");
+
+
+            buttonPause = new JButton("Pausa");
             c.weightx = 1;
             panelInterior.add(buttonPause, c);
+            buttonPause.addActionListener(this);
 
-
-            JButton buttonPlay = new JButton("Pausa");
+             buttonPlay = new JButton("Play");
             c.weightx = 1;
             panelInterior.add(buttonPlay, c);
+            buttonPlay.addActionListener(this);
 
-            JButton buttonStop = new JButton("Stop");
+            buttonStop = new JButton("Stop");
             c.weightx = 1;
             panelInterior.add(buttonStop, c);
+            buttonStop.addActionListener(this);
+
+
+            buttonStart = new JButton("Start");
+            c.weightx = 1;
+            panelInterior.add(buttonStart, c);
+            buttonStart.addActionListener(this);
+
 
             c.weighty = 0;
             panelInterior.add(filler, c);
@@ -179,7 +208,52 @@ public class RestaurantView extends JFrame implements Runnable {
     @Override
     public void run() {
             controller.getEstadistiques();
-        //Utilizado para actualizar los paneles de la vista dependiendo de lo que envíe el controlador en sus estadísticas
 
+        /*Utilizado para actualizar los paneles de la vista dependiendo de lo que envíe el controlador en sus estadísticas
+        y generar cocineros y comensales (sus paneles)*/
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() ==this.buttonPlay) {
+
+            for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
+                controller.getRestaurantModel().getCms().get(i).setPaused(false);
+
+            }
+            for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
+                controller.getRestaurantModel().getChefs().get(i).setPaused(false);
+
+            }
+            controller.play();
+
+        }
+        //Esto para TODOS los threads del programa = caca TODO (meter condición de pausa en chefs y comensales)
+        else if (e.getSource() ==this.buttonPause) {
+            for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
+                controller.getRestaurantModel().getCms().get(i).setPaused(true);
+            }
+            for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
+                controller.getRestaurantModel().getChefs().get(i).setPaused(true);
+            }
+
+
+        }
+        else if (e.getSource() ==this.buttonStop) {
+            try {
+                controller.getRestaurantModel().stop();
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+
+        }
+        else if (e.getSource() ==this.buttonStart) { try {
+            controller.getRestaurantModel().start();
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        }
     }
 }

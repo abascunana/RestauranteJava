@@ -19,6 +19,16 @@ public class Comensal implements Runnable{
     private int tempsTertulia;
     private ParametresSimulacio parametresSimulacio;
 
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
+
+    private boolean paused;
+
 
 
     private static Estadistiques stats;
@@ -163,11 +173,20 @@ public class Comensal implements Runnable{
 
     }
 
-
+    public void testPaused(){
+        if (this.isPaused()){
+            try {
+                rm.pause();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
     @Override
     public void run() {
         while (true){
             tertulia();
+            testPaused();
         }
 
 
