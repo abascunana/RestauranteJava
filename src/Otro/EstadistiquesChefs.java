@@ -1,6 +1,7 @@
 package Otro;
 
 public class EstadistiquesChefs {
+    //estadísticas generales de los chefs
     public int tempsDescansChef;
     public int platsCuinatChef;
     public int[] chefsPerEstat = new int[3];

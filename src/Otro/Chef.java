@@ -83,7 +83,6 @@ public class Chef implements Runnable {
         this.tempsEspera = 0;
         this.rellotge = rellotge;
         this.grill = grill;
-
         this.areaBuffet = areaBuffet;
 
     }
@@ -213,14 +212,16 @@ public class Chef implements Runnable {
 
     @Override
     public void run() {
+    while (true){
+        try {
+            testPaused();
+            cuinar();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
 
-    try {
-        testPaused();
-        cuinar();
-    } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-
+        }
     }
+
 
 
 

@@ -5,8 +5,10 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import Controlador.RestaurantController;
+import Otro.Estatchef;
 
 public class RestaurantView extends JFrame implements Runnable, ActionListener {
     JPanel[] Cocineros = new JPanel[36];
@@ -104,8 +106,17 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             c.gridx=0;
             c.weighty=2;
             paneli.add(filler,c);
-//son los chefs
 
+
+            pack();
+            pans.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+            pans.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+            generarElementos(c,paneli);
+
+            return pans;
+        }
+        private void generarElementos(GridBagConstraints c,JPanel paneli){
+            //son los chefs
             for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
                 c.gridx=1+i;
                 c.weightx = 1;
@@ -120,7 +131,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
 
             }
 //son los clientes
-            for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
+            for (int i = 0; i < controller.getRestaurantModel().getChefs().size()+1; i++) {
                 c.gridx=controller.getRestaurantModel().getCms().size()+i;
                 c.weightx = 1;
                 c.gridwidth=1;
@@ -137,13 +148,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             c.gridx=37;
             paneli.add(filler2,c);
 
-            pack();
-            pans.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-            pans.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-
-            return pans;
         }
-
 
         private JScrollPane generarPanelIzquierdo() {
             //Panel es el espacio en el que se colocarán los elementos
@@ -205,13 +210,60 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
 
             return panel;
         }
+        public void cambiarValores(){
+            //Cocinero: cocinando marron, descansando azul, entregando amarillo
+
+            //Comnesal: tertuliando marron, comiendo azul, recogiendo plato amarillo
+            for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
+                try {
+                    switch (controller.getRestaurantModel().getChefs().get(i).getEstatchef().ordinal()) {
+                        case 0:
+                            Cocineros[i+1].setBackground(Color.decode("400080"));
+                            break;
+                        case 1:
+                            Cocineros[i+1].setBackground(Color.blue);
+                            break;
+                        case 2:
+                            Cocineros[i+1].setBackground(Color.yellow);
+                            break;
+
+                    }
+                }
+                catch (Exception e){
+                   e.printStackTrace();
+                }
+
+
+            }
+            for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
+                try {
+                    switch (controller.getRestaurantModel().getCms().get(i).getStatuscm().ordinal()) {
+                        case 0:
+                            Clientes[i].setBackground(Color.decode("400080"));
+                            break;
+                        case 1:
+                            Clientes[i].setBackground(Color.blue);
+                            break;
+                        case 2:
+                            Clientes[i].setBackground(Color.yellow);
+                            break;
+
+                    }
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+    }
 
 
 
 
     @Override
     public void run() {
-            controller.getEstadistiques();
+           while (true){
+                cambiarValores();
+           }
 
         /*Utilizado para actualizar los paneles de la vista dependiendo de lo que envíe el controlador en sus estadísticas
         y generar cocineros y comensales (sus paneles)*/
@@ -233,7 +285,6 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             controller.play();
 
         }
-        //Esto para TODOS los threads del programa = caca TODO (meter condición de pausa en chefs y comensales)
         else if (e.getSource() ==this.buttonPause) {
             for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
                 controller.getRestaurantModel().getCms().get(i).setPaused(true);
@@ -253,6 +304,8 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
 
         }
         else if (e.getSource() ==this.buttonStart) { try {
+            Thread thread1 = new Thread(this);
+            thread1.start();
             controller.getRestaurantModel().start();
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);

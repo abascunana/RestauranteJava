@@ -1,6 +1,7 @@
 package Otro;
 
 public class EstadistiquesComensals {
+    //Estadísticas generales de los comensales
     public int tempsMenjantComensals;
     public int tempsTertuliaComensals;
     public int tempsEsperantComensals;

@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class MyTask {
     public MyTask(){
-
+//TODO Hay algo que hace que el programa vaya lento,solucionarlo
         Random random = new Random();
         //Estadísticas
         EstadistiquesComensals estadistiquesComensals = new EstadistiquesComensals();
