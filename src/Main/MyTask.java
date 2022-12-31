@@ -45,13 +45,13 @@ public class MyTask {
         thread.start();
         ///Elementos del restaurante
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 12; i++) {
             Comensal comensal = new Comensal(rellotge);
             comensals.add(comensal);
         }
 
 
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 9; i++){
             Chef chef = new Chef(rellotge,grills.get(random.nextInt(grills.size())),areaBuffet);
             chefs.add(chef);
         }
@@ -76,11 +76,16 @@ public class MyTask {
 
 ///Vista y controlador
 
-        RestaurantView restaurantView = new RestaurantView();
-        RestaurantController restaurantController = new RestaurantController(restaurantModel,restaurantView);
-        restaurantView.setController(restaurantController);
+
+        RestaurantController restaurantController = new RestaurantController();
+
+        restaurantController.setRestaurantModel(restaurantModel);
+
+
         restaurantController.setEstadistiques(estadistiques);
         restaurantModel.setController(restaurantController);
+        RestaurantView restaurantView = new RestaurantView(restaurantController);
+        restaurantController.setRestaurantView(restaurantView);
 
 
 //Inicialización de los threads

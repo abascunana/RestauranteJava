@@ -21,6 +21,13 @@ public class RestaurantController implements Runnable{
 
     RestaurantView restaurantView;
 
+    public void setRestaurantModel(RestaurantModel restaurantModel) {
+        this.restaurantModel = restaurantModel;
+    }
+
+    public void setRestaurantView(RestaurantView restaurantView) {
+        this.restaurantView = restaurantView;
+    }
 
     Estadistiques estadistiques;
 
@@ -52,9 +59,8 @@ public class RestaurantController implements Runnable{
             thread.get(i).interrupt();
         }
     }
-    public RestaurantController(RestaurantModel restaurantModel, RestaurantView restaurantView) {
-        this.restaurantModel = restaurantModel;
-        this.restaurantView = restaurantView;
+    public RestaurantController() {
+
         this.thread = restaurantModel.getThreads();
     }
 

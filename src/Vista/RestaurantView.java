@@ -27,8 +27,8 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
     public RestaurantController controller;
         private static final long serialVersionUID = -6829833718886341887L;
         //Jframe principal
-        public RestaurantView() {
-            this.controller =  controller;
+        public RestaurantView(RestaurantController controller) {
+            this.controller = controller;
             setTitle("Ventana de pruebas");
             //localización de aparición
             setLocationRelativeTo(null);
@@ -105,25 +105,29 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             c.weighty=2;
             paneli.add(filler,c);
 //son los chefs
-            for (int i = 0; i < 9; i++) {
+
+            for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
                 c.gridx=1+i;
                 c.weightx = 1;
-                c.weighty = 0;
+                c.gridwidth=1;
                 c.fill = GridBagConstraints.BOTH;
                 Border blackline = BorderFactory.createLineBorder(Color.black);
                 Clientes[i] = new JPanel(new GridBagLayout());
+                Clientes[i].setPreferredSize(new Dimension(5,1));
                 Clientes[i].setBackground(Color.green);
                 Clientes[i].setBorder(blackline);
                 paneli.add(Clientes[i],c);
+
             }
 //son los clientes
-            for (int i = 0; i < 36; i++) {
-                c.gridx=1+i;
+            for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
+                c.gridx=controller.getRestaurantModel().getCms().size()+i;
                 c.weightx = 1;
-                c.weighty = 1;
+                c.gridwidth=1;
                 c.fill = GridBagConstraints.BOTH;
                 Border blackline = BorderFactory.createLineBorder(Color.black);
                 Cocineros[i] = new JPanel(new GridBagLayout());
+                Cocineros[i].setPreferredSize(new Dimension(5,1));
                 Cocineros[i].setBackground(Color.white);
                 Cocineros[i].setBorder(blackline);
                 paneli.add(Cocineros[i],c);
