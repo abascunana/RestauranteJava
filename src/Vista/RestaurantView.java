@@ -217,9 +217,9 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
     }
 
     public void cambiarValores(){
-            //Cocinero: cocinando marron, descansando azul, entregando amarillo
+            //Cocinero: cocinando verde, descansando azul, entregando amarillo
 
-            //Comnesal: tertuliando marron, comiendo azul, recogiendo plato amarillo
+            //Comnesal: tertuliando verde, comiendo azul, recogiendo plato amarillo
             for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
                 try {
                     switch (controller.getRestaurantModel().getChefs().get(i).getEstatchef().ordinal()) {

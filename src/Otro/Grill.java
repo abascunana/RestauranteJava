@@ -35,7 +35,7 @@ public class Grill extends BufferPlats {
 
     @Override
     public synchronized void afegirplat() {
-   getColaPlatCuinats().getAreaBuffet().afegirplat();
+   getColaPlatCuinats().afegirplat();
     }
 
     public synchronized void posarEnServei(){

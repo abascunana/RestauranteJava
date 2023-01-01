@@ -17,23 +17,19 @@ public class Rellotge implements Runnable{
 
     public int getMinutActual() {
         //TODO solucionar problema: en algún punto del código minutoactual se cambia a un valor negativo
+        if (minutActual < 0) {
 
+            System.err.println("EL RELOJ NO DEBERÍA DE DAR VALORES NEGATIVOS");
+
+        }
         return minutActual;
 
+
     }
-
-
 
     public int getMultiplicadorTemps() {
         return multiplicadorTemps;
     }
-
-
-    public int convertirTemps(int temps){
-        return temps * 1000;
-    }
-
-
 //Esto lo que hace es que cada actividad (descansar, cocinar...) pueda calcular el intervalo de inicio de actividad al tiempo transcurrido al realizar la actividad
     public int getInterval(int minutInicioActividad){
         return getMinutActual() - minutInicioActividad;
