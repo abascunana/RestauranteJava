@@ -88,6 +88,7 @@ public class Chef implements Runnable {
     }
                                                                               
     public  void cuinar() throws InterruptedException {
+        testPaused();
         while (this.getAreaBuffet().getColaPlatCuinats().getQuantitatActual() < this.getAreaBuffet().getCapacitatMaxima()) {
                 this.grill.setEnServei(true);
 
@@ -99,10 +100,12 @@ public class Chef implements Runnable {
                 minInicio = this.getRellotge().getMinutActual();
                 while (!cocinado) {
                     this.setTempsTotalCuinant(this.getTempsTotalCuinant() + 1);
-                    if (this.getRellotge().getInterval(minInicio) >= this.getRellotge().convertirTemps(this.getHorariIniciDescans())) {
-                       entregarPlat();
+                    //Relojproblema
+                    if (this.getRellotge().getInterval(minInicio) <= this.getRellotge().convertirTemps(this.getHorariIniciDescans())) {
+
                         cocinado = true;
                         descansar();
+                        entregarPlat();
 
                     }
                 }
@@ -212,19 +215,16 @@ public class Chef implements Runnable {
 
     @Override
     public void run() {
-    while (true){
-        try {
-            testPaused();
-            cuinar();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
 
-        }
+    try {
+        cuinar();
+    } catch (InterruptedException e) {
+        throw new RuntimeException(e);
     }
 
+}
 
 
 
-        }
 
 }

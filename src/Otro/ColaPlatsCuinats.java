@@ -2,7 +2,8 @@ package Otro;
 
 public class ColaPlatsCuinats extends BufferPlats{
 
-
+    private int capacitatMaxima;
+    private int quantitatActual;
     public AreaBuffet areaBuffet;
     public ColaPlatsCuinats(int capacitatMaxima) {
         super(capacitatMaxima);
@@ -15,14 +16,33 @@ public class ColaPlatsCuinats extends BufferPlats{
     public void setAreaBuffet(AreaBuffet areaBuffet) {
         this.areaBuffet = areaBuffet;
     }
-
-    @Override
+@Override
     public synchronized void afegirplat() {
-        super.afegirplat();
-    }
+        while(quantitatActual == capacitatMaxima) {
+            try {
+                System.out.println("dormido");
 
-    @Override
-    public synchronized void retirarPlat() {
-        super.retirarPlat();
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        quantitatActual++;
+
+        notifyAll();
+    }
+@Override
+    public synchronized void retirarPlat(){
+        while(quantitatActual == 0) {
+            try {
+                System.out.println("Resucitado");
+                wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        quantitatActual--;
+        notifyAll();
+
     }
 }

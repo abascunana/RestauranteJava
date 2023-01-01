@@ -134,7 +134,8 @@ public class Comensal implements Runnable{
        agafarPlat(getAreaBuffet());
        int minInicio = this.getRellotge().getMinutActual();
        int numbre= rm.nextInt( this.getRm().getPs().tempsConsumir.getMin(), this.getRm().getPs().tempsConsumir.getMax());
-         if (this.getRellotge().getInterval(minInicio) == numbre) {
+       //Relojproblema
+       if (this.getRellotge().getInterval(minInicio) >= numbre) {
 
              tertulia();
 
@@ -144,6 +145,7 @@ public class Comensal implements Runnable{
     }
 
     public void tertulia()  {
+            testPaused();
             this.setStatuscm(Statuscm.xerrant);
             this.tempsTertulia+=1;
 
@@ -151,13 +153,13 @@ public class Comensal implements Runnable{
             int minInicio = this.getRellotge().getMinutActual();
             int numbre= rm.nextInt( this.getRm().getPs().tempsTertulia.getMin(), this.getRm().getPs().tempsTertulia.getMax());
         //TODO EL RELOJ TIENE QUE INICIALSE EN OTRO LUGAR O MODIFICARLO PARA QUE NO VAYA TAN RÁPIDO
-
-            if (this.getRellotge().getInterval(minInicio) >=this.getRellotge().convertirTemps( numbre) ){
+        //Relojproblema
+            if(this.getRellotge().getInterval(minInicio) <=this.getRellotge().convertirTemps( numbre) ){
                 for (int i = 0; i < getRm().getAb().size(); i++) {
-                    if (getRm().getAb().get(i).getQuantitatActual() > 0){
-                        menjar();
-                    }
-        }
+                        if (getRm().getAb().get(i).getQuantitatActual() > 0) {
+                            menjar();
+                        }
+                }
 
             }
     }
@@ -184,10 +186,10 @@ public class Comensal implements Runnable{
     }
     @Override
     public void run() {
-        while (true){
-            tertulia();
-            testPaused();
-        }
+while (true){
+    tertulia();
+}
+
 
 
     }

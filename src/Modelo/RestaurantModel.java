@@ -95,7 +95,8 @@ public void getEstadistiques(){
             threads.add(new Thread(cms.get(i)));
         }
         this.rl = rellotge;
-
+        Thread thread = new Thread(rl);
+        thread.start();
         this.ps = new ParametresSimulacio(10,11,10);
 
 
@@ -104,6 +105,7 @@ public void getEstadistiques(){
 
     }
     public  void start() throws InterruptedException {
+
         for (int i = 0; i <threads.size() ; i++) {
             threads.get(i).start();
         }

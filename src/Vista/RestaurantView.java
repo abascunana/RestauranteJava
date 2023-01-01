@@ -111,8 +111,8 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             pack();
             pans.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             pans.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-            generarElementos(c,paneli);
 
+            generarElementos(c,paneli);
             return pans;
         }
         private void generarElementos(GridBagConstraints c,JPanel paneli){
@@ -210,7 +210,13 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
 
             return panel;
         }
-        public void cambiarValores(){
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+    }
+
+    public void cambiarValores(){
             //Cocinero: cocinando marron, descansando azul, entregando amarillo
 
             //Comnesal: tertuliando marron, comiendo azul, recogiendo plato amarillo
@@ -218,7 +224,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
                 try {
                     switch (controller.getRestaurantModel().getChefs().get(i).getEstatchef().ordinal()) {
                         case 0:
-                            Cocineros[i+1].setBackground(Color.decode("400080"));
+                            Cocineros[i+1].setBackground(Color.green);
                             break;
                         case 1:
                             Cocineros[i+1].setBackground(Color.blue);
@@ -230,7 +236,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
                     }
                 }
                 catch (Exception e){
-                   e.printStackTrace();
+                    System.out.println("Recogiendo valores de los cocineros");
                 }
 
 
@@ -239,7 +245,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
                 try {
                     switch (controller.getRestaurantModel().getCms().get(i).getStatuscm().ordinal()) {
                         case 0:
-                            Clientes[i].setBackground(Color.decode("400080"));
+                            Clientes[i].setBackground(Color.green);
                             break;
                         case 1:
                             Clientes[i].setBackground(Color.blue);
@@ -251,7 +257,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
                     }
                 }
                 catch (Exception e){
-                    e.printStackTrace();
+                    System.out.println("Recogiendo valores de los comensales");
                 }
             }
     }
@@ -261,9 +267,9 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
 
     @Override
     public void run() {
-           while (true){
-                cambiarValores();
-           }
+while (true){
+    cambiarValores();
+}
 
         /*Utilizado para actualizar los paneles de la vista dependiendo de lo que envíe el controlador en sus estadísticas
         y generar cocineros y comensales (sus paneles)*/
@@ -304,9 +310,10 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
 
         }
         else if (e.getSource() ==this.buttonStart) { try {
+
+            controller.getRestaurantModel().start();
             Thread thread1 = new Thread(this);
             thread1.start();
-            controller.getRestaurantModel().start();
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }

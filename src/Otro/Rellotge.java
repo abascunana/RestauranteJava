@@ -16,28 +16,23 @@ public class Rellotge implements Runnable{
 
 
     public int getMinutActual() {
+        //TODO solucionar problema: en algún punto del código minutoactual se cambia a un valor negativo
+
         return minutActual;
+
     }
 
-    public synchronized void setMinutActual(int minutActual) {
-        this.minutActual = minutActual;
-    }
+
 
     public int getMultiplicadorTemps() {
         return multiplicadorTemps;
     }
 
-    public void setMultiplicadorTemps(int multiplicadorTemps) {
-        this.multiplicadorTemps = multiplicadorTemps;
-    }
 
     public int convertirTemps(int temps){
         return temps * 1000;
     }
 
-    public int getTemps(int temps){
-        return temps;
-    }
 
 //Esto lo que hace es que cada actividad (descansar, cocinar...) pueda calcular el intervalo de inicio de actividad al tiempo transcurrido al realizar la actividad
     public int getInterval(int minutInicioActividad){
@@ -68,7 +63,9 @@ public class Rellotge implements Runnable{
     @Override
         public void run() {
         while (true){
-            setMinutActual(this.getMinutActual()+1*getMultiplicadorTemps());
+
+            minutActual = (this.getMinutActual()+1)*getMultiplicadorTemps();
+
 
         }
     }

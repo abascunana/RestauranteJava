@@ -41,8 +41,7 @@ public class MyTask {
 
         //Reloj
         Rellotge rellotge = Rellotge.getInstance();
-        Thread thread = new Thread(rellotge);
-        thread.start();
+
         ///Elementos del restaurante
 
         for (int i = 0; i < 12; i++) {
