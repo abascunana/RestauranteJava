@@ -115,6 +115,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             generarElementos(c,paneli);
             return pans;
         }
+        //Mejorar la forma en la que se pintan los cacharros estos para evitar sobrecarga de recursos
         private void generarElementos(GridBagConstraints c,JPanel paneli){
             //son los chefs
             for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
@@ -211,10 +212,6 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             return panel;
         }
 
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-    }
 
     public void cambiarValores(){
             //Cocinero: cocinando verde, descansando azul, entregando amarillo
@@ -261,8 +258,6 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
                 }
             }
     }
-
-
 
 
     @Override

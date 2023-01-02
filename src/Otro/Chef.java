@@ -25,7 +25,7 @@ public class Chef implements Runnable {
     private int tempsEspera;
     private Rellotge rellotge;
     private AreaBuffet areaBuffet;
-
+    private int Platos=0;
     public boolean isPaused() {
         return paused;
     }
@@ -84,6 +84,7 @@ public class Chef implements Runnable {
         this.rellotge = rellotge;
         this.grill = grill;
         this.areaBuffet = areaBuffet;
+        this.status = new EstadistiquesChefs();
 
     }
                                                                               
@@ -99,6 +100,7 @@ public class Chef implements Runnable {
                 int minInicio;
                 minInicio = this.getRellotge().getMinutActual();
                 while (!cocinado) {
+
                     this.setTempsTotalCuinant(this.getTempsTotalCuinant() + 1);
                     //Relojproblema
                     if (this.getRellotge().getInterval(minInicio) >= this.getRellotge().minutsEnMilisegons(this.getHorariIniciDescans())) {
@@ -124,6 +126,8 @@ public class Chef implements Runnable {
             Random rm = new Random();
             int numbre = rm.nextInt(this.getRm().getPs().tempsDescans.getMin(), this.getRm().getPs().tempsDescans.getMax());
             System.out.println("descansando");
+            tempsTotalDescans+=1;
+            status.setTempsDescansChef(tempsTotalDescans);
             //ESTO HACE LA SIMULACIÓN MÁS REALISTA PERO ESPERA TODOS LOS MINUTOS, QUITAR SI SE VE NECESARIO
         //Thread.sleep(this.getRellotge().getMiliEnMinuts(numbre));
            Thread.sleep(this.getRellotge().minutsEnMilisegons(numbre));
@@ -133,6 +137,8 @@ public class Chef implements Runnable {
 
             System.out.println("entregando");
             this.setEstatchef(Estatchef.entregant);
+            Platos+=1;
+            status.setPlatsCuinatChef(Platos);
             this.getGrill().afegirplat();
 
 
