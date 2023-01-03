@@ -10,7 +10,7 @@ public class Rellotge implements Runnable{
 
     private Rellotge() {
         this.minutActual = 0;
-        this.multiplicadorTemps = 100;
+        this.multiplicadorTemps = 1000;
     }
 
 
@@ -18,9 +18,7 @@ public class Rellotge implements Runnable{
     public int getMinutActual() {
         //TODO solucionar problema: en algún punto del código minutoactual se cambia a un valor negativo
         if (minutActual < 0) {
-
             System.err.println("EL RELOJ NO DEBERÍA DE DAR VALORES NEGATIVOS");
-
         }
         return minutActual;
 
@@ -61,7 +59,9 @@ public class Rellotge implements Runnable{
         while (true){
           //el programa para repentinamente porque eñ valor de minutactual da a parar en un valor que no puede ser almacenadp en un integer
           // con el multiplicador a mil llega a 68788264
+
             minutActual = (this.getMinutActual()+1)*getMultiplicadorTemps();
+
 
 
         }

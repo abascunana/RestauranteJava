@@ -104,13 +104,13 @@ public void getEstadistiques(){
 
     }
     public  void start() throws InterruptedException {
-
+        Thread thread = new Thread(rl);
+        thread.start();
         for (int i = 0; i <threads.size() ; i++) {
             threads.get(i).start();
         }
 
-        Thread thread = new Thread(rl);
-        thread.start();
+
     }
     public synchronized void play() throws InterruptedException {
         controller.play();

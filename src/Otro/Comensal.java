@@ -135,7 +135,7 @@ public class Comensal implements Runnable{
        int minInicio = this.getRellotge().getMinutActual();
        int numbre= rm.nextInt( this.getRm().getPs().tempsConsumir.getMin(), this.getRm().getPs().tempsConsumir.getMax());
        //Relojproblema
-       if (this.getRellotge().getInterval(minInicio) == getRellotge().minutsEnMilisegons(numbre)) {
+       if (this.getRellotge().getInterval(minInicio) >= getRellotge().minutsEnMilisegons(numbre)) {
 
              tertulia();
 
@@ -145,6 +145,8 @@ public class Comensal implements Runnable{
     }
 
     public void tertulia()  {
+
+            testPaused();
             this.setStatuscm(Statuscm.xerrant);
             this.tempsTertulia+=1;
 
@@ -153,7 +155,7 @@ public class Comensal implements Runnable{
             int numbre= rm.nextInt( this.getRm().getPs().tempsTertulia.getMin(), this.getRm().getPs().tempsTertulia.getMax());
             //TODO EL RELOJ TIENE QUE INICIALSE EN OTRO LUGAR O MODIFICARLO PARA QUE NO VAYA TAN RÁPIDO
             //Relojproblema
-            if (this.getRellotge().getInterval(minInicio) ==this.getRellotge().minutsEnMilisegons( numbre) ){
+            if (this.getRellotge().getInterval(minInicio) >=this.getRellotge().minutsEnMilisegons( numbre) ){
                 for (int i = 0; i < getRm().getAb().size(); i++) {
                     if (getRm().getAb().get(i).getQuantitatActual() > 0) {
                         menjar();
@@ -183,12 +185,10 @@ public class Comensal implements Runnable{
                 throw new RuntimeException(e);
             }
         }
-
     }
     @Override
     public void run() {
 while (true){
-testPaused();
     tertulia();
 }
 

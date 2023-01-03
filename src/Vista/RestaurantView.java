@@ -277,22 +277,25 @@ while (true){
             for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
                 controller.getRestaurantModel().getCms().get(i).setPaused(false);
 
+
             }
             for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
                 controller.getRestaurantModel().getChefs().get(i).setPaused(false);
 
 
             }
-            controller.play();
 
+            controller.play();
 
         }
         else if (e.getSource() ==this.buttonPause) {
             for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
                 controller.getRestaurantModel().getCms().get(i).setPaused(true);
+
             }
             for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
                 controller.getRestaurantModel().getChefs().get(i).setPaused(true);
+
             }
 
 

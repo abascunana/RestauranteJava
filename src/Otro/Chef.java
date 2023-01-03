@@ -89,7 +89,7 @@ public class Chef implements Runnable {
     }
                                                                               
     public  void cuinar() throws InterruptedException {
-        testPaused();
+
         while (this.getAreaBuffet().getColaPlatCuinats().getQuantitatActual() < this.getAreaBuffet().getCapacitatMaxima()) {
                 this.grill.setEnServei(true);
 
@@ -222,6 +222,7 @@ public class Chef implements Runnable {
     public void run() {
 
     try {
+        testPaused();
         cuinar();
     } catch (InterruptedException e) {
         throw new RuntimeException(e);
