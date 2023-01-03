@@ -130,8 +130,7 @@ public class Chef implements Runnable {
             status.setTempsDescansChef(tempsTotalDescans);
             //ESTO HACE LA SIMULACIÓN MÁS REALISTA PERO ESPERA TODOS LOS MINUTOS, QUITAR SI SE VE NECESARIO
         //Thread.sleep(this.getRellotge().getMiliEnMinuts(numbre));
-           Thread.sleep(this.getRellotge().minutsEnMilisegons(numbre));
-
+        Thread.sleep(this.getRellotge().minutsEnMilisegons(numbre));
     }
     public void entregarPlat() throws InterruptedException {
 

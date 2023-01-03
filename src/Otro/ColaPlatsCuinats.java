@@ -22,7 +22,7 @@ public class ColaPlatsCuinats extends BufferPlats{
     public synchronized void afegirplat() {
         while(quantitatActual == capacitatMaxima) {
             try {
-                System.out.println("dormido");
+  //              System.out.println("dormido");
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
@@ -39,7 +39,7 @@ public class ColaPlatsCuinats extends BufferPlats{
     public synchronized void retirarPlat(){
         while(quantitatActual == 0) {
             try {
-                System.out.println("Resucitado");
+ //               System.out.println("Resucitado");
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);

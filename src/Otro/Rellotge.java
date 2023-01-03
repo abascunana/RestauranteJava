@@ -59,7 +59,8 @@ public class Rellotge implements Runnable{
     @Override
         public void run() {
         while (true){
-
+          //el programa para repentinamente porque eñ valor de minutactual da a parar en un valor que no puede ser almacenadp en un integer
+//con el multiplicador a mil llega a 68788264
             minutActual = (this.getMinutActual()+1)*getMultiplicadorTemps();
 
 

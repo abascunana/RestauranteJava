@@ -86,6 +86,7 @@ public void getEstadistiques(){
         this.cms = cms;
         this.threads = new ArrayList<Thread>();
         this.gls =grills;
+        this.rl = rellotge;
 
         for (int i = 0; i < chefs.size(); i++) {
 
@@ -94,9 +95,7 @@ public void getEstadistiques(){
         for (int i = 0; i < cms.size(); i++) {
             threads.add(new Thread(cms.get(i)));
         }
-        this.rl = rellotge;
-        Thread thread = new Thread(rl);
-        thread.start();
+
         this.ps = new ParametresSimulacio(10,11,10);
 
 
@@ -109,6 +108,9 @@ public void getEstadistiques(){
         for (int i = 0; i <threads.size() ; i++) {
             threads.get(i).start();
         }
+
+        Thread thread = new Thread(rl);
+        thread.start();
     }
     public synchronized void play() throws InterruptedException {
         controller.play();
