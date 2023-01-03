@@ -274,7 +274,6 @@ while (true){
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() ==this.buttonPlay) {
-
             for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
                 controller.getRestaurantModel().getCms().get(i).setPaused(false);
 
@@ -282,8 +281,10 @@ while (true){
             for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
                 controller.getRestaurantModel().getChefs().get(i).setPaused(false);
 
+
             }
             controller.play();
+
 
         }
         else if (e.getSource() ==this.buttonPause) {
@@ -297,11 +298,7 @@ while (true){
 
         }
         else if (e.getSource() ==this.buttonStop) {
-            try {
-                controller.getRestaurantModel().stop();
-            } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
-            }
+            controller.stop();
 
         }
         else if (e.getSource() ==this.buttonStart) { try {

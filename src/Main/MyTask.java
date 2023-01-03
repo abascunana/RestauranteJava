@@ -87,8 +87,6 @@ public class MyTask {
         restaurantController.setRestaurantView(restaurantView);
 
 
-//Inicialización de los threads
-
 
     }
 }

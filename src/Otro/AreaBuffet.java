@@ -56,7 +56,6 @@ public class AreaBuffet extends BufferPlats{
 
     public AreaBuffet(String descripcio, int cm) {
         super(cm);
-        //TODO  no entiendo nada jodeeeeeeeeeeeeeeeeeeer
         this.colaPlatCuinats = new ColaPlatsCuinats(100);
         this.descripcio = descripcio;
     }

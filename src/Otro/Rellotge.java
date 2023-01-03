@@ -10,7 +10,7 @@ public class Rellotge implements Runnable{
 
     private Rellotge() {
         this.minutActual = 0;
-        this.multiplicadorTemps = 1000;
+        this.multiplicadorTemps = 100;
     }
 
 
@@ -60,7 +60,7 @@ public class Rellotge implements Runnable{
         public void run() {
         while (true){
           //el programa para repentinamente porque eñ valor de minutactual da a parar en un valor que no puede ser almacenadp en un integer
-//con el multiplicador a mil llega a 68788264
+          // con el multiplicador a mil llega a 68788264
             minutActual = (this.getMinutActual()+1)*getMultiplicadorTemps();
 
 
