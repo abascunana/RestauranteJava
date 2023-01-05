@@ -1,17 +1,33 @@
 package Otro;
 
+import Modelo.RestaurantModel;
+
 public class Rellotge implements Runnable{
     //Singleton
     private static Rellotge rellotge;
 
+    public static RestaurantModel getRm() {
+        return rm;
+    }
+
+    public static void setRm(RestaurantModel rm) {
+        Rellotge.rm = rm;
+    }
+
+    private static RestaurantModel rm;
 
     private static int minutActual;
     private static int multiplicadorTemps;
+
+
+
 
     private Rellotge() {
         this.minutActual = 0;
         this.multiplicadorTemps = 1;
     }
+
+
 
 
 
@@ -25,9 +41,6 @@ public class Rellotge implements Runnable{
 
     }
 
-    public int getMultiplicadorTemps() {
-        return multiplicadorTemps;
-    }
 //Esto lo que hace es que cada actividad (descansar, cocinar...) pueda calcular el intervalo de inicio de actividad al tiempo transcurrido al realizar la actividad
     public int getInterval(int minutInicioActividad){
         return getMinutActual() - minutInicioActividad;
@@ -59,8 +72,8 @@ public class Rellotge implements Runnable{
         while (true){
           //el programa para repentinamente porque eñ valor de minutactual da a parar en un valor que no puede ser almacenadp en un integer
           // con el multiplicador a mil llega a 68788264
+            minutActual = (this.getMinutActual()+1)*multiplicadorTemps;
 
-            minutActual = (this.getMinutActual()+1)*getMultiplicadorTemps();
 
 
 

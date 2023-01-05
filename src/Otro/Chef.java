@@ -101,7 +101,7 @@ public class Chef implements Runnable {
             System.out.println("cocinando");
                 while (!cocinado) {
 
-                    this.setTempsTotalCuinant(this.getTempsTotalCuinant() + 1);
+                    tempsTotalCuinant++;
                     //Relojproblema
                     if (this.getRellotge().getInterval(minInicio) >= this.getHorariIniciDescans()) {
 

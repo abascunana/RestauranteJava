@@ -48,7 +48,6 @@ public class RestaurantController implements Runnable{
         try {
             System.out.println("dormido");
             wait();
-
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

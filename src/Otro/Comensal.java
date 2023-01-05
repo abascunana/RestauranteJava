@@ -189,6 +189,7 @@ public class Comensal implements Runnable{
     @Override
     public void run() {
 while (true){
+
     tertulia();
 }
 

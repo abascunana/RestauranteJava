@@ -276,14 +276,13 @@ while (true){
         if(e.getSource() ==this.buttonPlay) {
             for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
                 controller.getRestaurantModel().getCms().get(i).setPaused(false);
-
-
             }
             for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
                 controller.getRestaurantModel().getChefs().get(i).setPaused(false);
 
 
             }
+
 
             controller.play();
 
@@ -295,7 +294,6 @@ while (true){
             }
             for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
                 controller.getRestaurantModel().getChefs().get(i).setPaused(true);
-
             }
 
 

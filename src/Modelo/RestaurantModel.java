@@ -105,7 +105,7 @@ public void getEstadistiques(){
     }
     public  void start() throws InterruptedException {
         Thread thread = new Thread(rl);
-        thread.start();
+        threads.add(thread);
         for (int i = 0; i <threads.size() ; i++) {
             threads.get(i).start();
         }

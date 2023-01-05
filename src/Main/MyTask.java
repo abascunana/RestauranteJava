@@ -61,6 +61,7 @@ public class MyTask {
 
 ///Lógica del restaurante
         RestaurantModel restaurantModel = new RestaurantModel(comensals,chefs,rellotge,grills);
+        rellotge.setRm(restaurantModel);
         restaurantModel.getAb().add(areaBuffet);
         for (int i = 0; i < comensals.size(); i++) {
             comensals.get(i).setRm(restaurantModel);
