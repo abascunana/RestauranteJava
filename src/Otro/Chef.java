@@ -96,14 +96,14 @@ public class Chef implements Runnable {
                 this.setEstatchef(Estatchef.cuinant);
 
                 boolean cocinado = false;
-                System.out.println("cocinando");
                 int minInicio;
                 minInicio = this.getRellotge().getMinutActual();
+            System.out.println("cocinando");
                 while (!cocinado) {
 
                     this.setTempsTotalCuinant(this.getTempsTotalCuinant() + 1);
                     //Relojproblema
-                    if (this.getRellotge().getInterval(minInicio) >= this.getRellotge().minutsEnMilisegons(this.getHorariIniciDescans())) {
+                    if (this.getRellotge().getInterval(minInicio) >= this.getHorariIniciDescans()) {
 
                         cocinado = true;
                         descansar();

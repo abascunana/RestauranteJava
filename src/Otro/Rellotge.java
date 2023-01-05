@@ -10,7 +10,7 @@ public class Rellotge implements Runnable{
 
     private Rellotge() {
         this.minutActual = 0;
-        this.multiplicadorTemps = 1000;
+        this.multiplicadorTemps = 1;
     }
 
 
