@@ -1,11 +1,21 @@
 package Otro;
 
 import Modelo.RestaurantModel;
+import com.sun.jdi.event.MethodExitEvent;
 
 public class Rellotge implements Runnable{
     //Singleton
     private static Rellotge rellotge;
 
+    public boolean isPaused() {
+        return paused;
+    }
+
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
+
+    boolean paused;
     public static RestaurantModel getRm() {
         return rm;
     }
@@ -30,12 +40,33 @@ public class Rellotge implements Runnable{
 
 
 
+    public void testPaused() {
+        if (this.isPaused()) {
+            try {
+                rm.pause();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try {
+                rm.play();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
 
     public int getMinutActual() {
-        //TODO solucionar problema: en algún punto del código minutoactual se cambia a un valor negativo
         if (minutActual < 0) {
+            minutActual=0;
             System.err.println("EL RELOJ NO DEBERÍA DE DAR VALORES NEGATIVOS");
         }
+        //Este sout cambia completamente el funcionamiento del programa :,,,)
+        else {
+            System.out.println();
+        }
+
         return minutActual;
 
 
@@ -73,7 +104,7 @@ public class Rellotge implements Runnable{
           //el programa para repentinamente porque eñ valor de minutactual da a parar en un valor que no puede ser almacenadp en un integer
           // con el multiplicador a mil llega a 68788264
             minutActual = (this.getMinutActual()+1)*multiplicadorTemps;
-
+            testPaused();
 
 
 

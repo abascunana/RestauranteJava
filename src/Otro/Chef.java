@@ -58,22 +58,7 @@ public class Chef implements Runnable {
     }
 
 
-    public void testPaused(){
-        if (this.isPaused()){
-            try {
-                rm.pause();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        else {
-            try {
-                rm.play();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
+
     public Chef(Rellotge rellotge, Grill grill, AreaBuffet areaBuffet) {
         this.tempsTotalCuinant = 0;
         this.tempsNoDescans = 0;
@@ -222,7 +207,6 @@ public class Chef implements Runnable {
     public void run() {
 
     try {
-        testPaused();
         cuinar();
     } catch (InterruptedException e) {
         throw new RuntimeException(e);

@@ -146,7 +146,7 @@ public class Comensal implements Runnable{
 
     public void tertulia()  {
 
-            testPaused();
+
             this.setStatuscm(Statuscm.xerrant);
             this.tempsTertulia+=1;
 
@@ -177,15 +177,7 @@ public class Comensal implements Runnable{
 
     }
 
-    public void testPaused(){
-        if (this.isPaused()){
-            try {
-                rm.pause();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
+
     @Override
     public void run() {
 while (true){
