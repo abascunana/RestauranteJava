@@ -95,7 +95,8 @@ public class RestaurantController implements Runnable{
     }
     public AreaBuffet getRandomBuffet(){
         Random randomnumber = new Random();
-        int randomindex = randomnumber.nextInt(restaurantModel.getAb().size());
+
+        int randomindex = randomnumber.nextInt(0,restaurantModel.getAb().size());
         return restaurantModel.getAb().get(randomindex);
     }
 
