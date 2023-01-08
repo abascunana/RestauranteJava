@@ -274,28 +274,15 @@ while (true){
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() ==this.buttonPlay) {
-            for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
-                controller.getRestaurantModel().getCms().get(i).setPaused(false);
-            }
-            for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
-                controller.getRestaurantModel().getChefs().get(i).setPaused(false);
 
-
-            }
-
+            controller.getRestaurantModel().getRl().setPaused(false);
 
             controller.play();
 
         }
         else if (e.getSource() ==this.buttonPause) {
-            for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
-                controller.getRestaurantModel().getCms().get(i).setPaused(true);
 
-            }
-            for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
-                controller.getRestaurantModel().getChefs().get(i).setPaused(true);
-            }
-
+            controller.getRestaurantModel().getRl().setPaused(true);
 
         }
         else if (e.getSource() ==this.buttonStop) {
