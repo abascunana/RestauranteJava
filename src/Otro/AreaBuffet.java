@@ -22,6 +22,7 @@ public class AreaBuffet extends BufferPlats{
 
     @Override
     public synchronized void afegirplat() {
+        System.out.println(descripcio);
         super.afegirplat();
     }
 
@@ -49,9 +50,7 @@ public class AreaBuffet extends BufferPlats{
         return descripcio;
     }
 
-    public void setDescripcio(String descripcio) {
-        this.descripcio = descripcio;
-    }
+
 
 
     public AreaBuffet(String descripcio, int cm) {

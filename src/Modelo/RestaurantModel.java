@@ -80,8 +80,8 @@ public class RestaurantModel {
 public void getEstadistiques(){
         //TODO el tiempo en el que cocinero y cliente han hecho cosas (tertulia,descanso etc)
 }
-    public RestaurantModel(ArrayList<Comensal> cms, ArrayList<Chef> chefs, Rellotge rellotge,ArrayList<Grill> grills) {
-        this.abs=new ArrayList<AreaBuffet>();
+    public RestaurantModel(ArrayList<Comensal> cms, ArrayList<Chef> chefs, Rellotge rellotge,ArrayList<Grill> grills,ArrayList<AreaBuffet> abs) {
+        this.abs=abs;
         this.chefs = chefs;
         this.cms = cms;
         this.threads = new ArrayList<Thread>();
