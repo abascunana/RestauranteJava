@@ -57,7 +57,6 @@ public class Grill extends BufferPlats {
         super(cm);
         this.areaBuffet = areaBuffet;
         this.posarEnServei();
-        //No entiendo muy bien para que srve esta variable
         this.colaPlatCuinats =cps;
 
     }
