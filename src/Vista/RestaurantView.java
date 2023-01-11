@@ -5,14 +5,16 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Random;
 
 import Controlador.RestaurantController;
 import Otro.Estatchef;
 
 public class RestaurantView extends JFrame implements Runnable, ActionListener {
-    JPanel[] Cocineros = new JPanel[36];
-    JPanel[] Clientes = new JPanel[12];
+    JLabel[] Cocineros = new JLabel[36];
+    JLabel[] Clientes = new JLabel[12];
     JButton buttonPause;
     JButton buttonPlay;
     JButton buttonStop;
@@ -101,6 +103,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             c.gridx=0;
             c.weighty=1;
 
+
             JScrollPane pans = new JScrollPane(paneli);
             c.gridy=3;
             c.gridx=0;
@@ -123,25 +126,20 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
                 c.weightx = 1;
                 c.gridwidth=1;
                 c.fill = GridBagConstraints.BOTH;
-                Border blackline = BorderFactory.createLineBorder(Color.black);
-                Clientes[i] = new JPanel(new GridBagLayout());
-                Clientes[i].setPreferredSize(new Dimension(5,1));
-                Clientes[i].setBackground(Color.green);
-                Clientes[i].setBorder(blackline);
+                ImageIcon cliente=new ImageIcon("src/Imagenes/Clientes/cliente.png");
+                Clientes[i] = new JLabel(cliente);
+                Clientes[i].setPreferredSize(new Dimension(10,1));
                 paneli.add(Clientes[i],c);
 
             }
 //son los clientes
-            for (int i = 0; i < controller.getRestaurantModel().getChefs().size()+1; i++) {
-                c.gridx=controller.getRestaurantModel().getCms().size()+i;
-                c.weightx = 1;
+            for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
+                c.gridx=controller.getRestaurantModel().getCms().size()+1+i;
+                c.weightx =1;
                 c.gridwidth=1;
                 c.fill = GridBagConstraints.BOTH;
-                Border blackline = BorderFactory.createLineBorder(Color.black);
-                Cocineros[i] = new JPanel(new GridBagLayout());
-                Cocineros[i].setPreferredSize(new Dimension(5,1));
-                Cocineros[i].setBackground(Color.white);
-                Cocineros[i].setBorder(blackline);
+                Cocineros[i] = new JLabel(new ImageIcon("src/Imagenes/Cocineros/cocinero.png"));
+                Cocineros[i].setPreferredSize(new Dimension(10,1));
                 paneli.add(Cocineros[i],c);
             }
 
@@ -221,13 +219,13 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
                 try {
                     switch (controller.getRestaurantModel().getChefs().get(i).getEstatchef().ordinal()) {
                         case 0:
-                            Cocineros[i+1].setBackground(Color.green);
+                            Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/cocinando.png")));
                             break;
                         case 1:
-                            Cocineros[i+1].setBackground(Color.blue);
+                            Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/descansando.png")));
                             break;
                         case 2:
-                            Cocineros[i+1].setBackground(Color.yellow);
+                            Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/entregando.png")));
                             break;
 
                     }
@@ -242,13 +240,13 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
                 try {
                     switch (controller.getRestaurantModel().getCms().get(i).getStatuscm().ordinal()) {
                         case 0:
-                            Clientes[i].setBackground(Color.green);
+                            Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/tertuliando.png")));
                             break;
                         case 1:
-                            Clientes[i].setBackground(Color.blue);
+                            Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/comiendo.png")));
                             break;
                         case 2:
-                            Clientes[i].setBackground(Color.yellow);
+                            Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/recogiendo.png")));
                             break;
 
                     }
