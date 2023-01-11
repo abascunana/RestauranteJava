@@ -219,60 +219,69 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
         ArrayList <Integer> comensalestado = new ArrayList<>();
             //Comnesal: tertuliando verde, comiendo azul, recogiendo plato amarillo
             for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
-         //       for (int j = 0; j < controller.getRestaurantModel().getChefs().size(); j++) {
-          //          chefestado.add(controller.getRestaurantModel().getChefs().get(j).getEstatchef().ordinal());
-           //     }
-          //      if (chefestado.get(i) !=controller.getRestaurantModel().getChefs().get(i).getEstatchef().ordinal()){
-                    try {
+                for (int j = 0; j < controller.getRestaurantModel().getChefs().size(); j++) {
+                    chefestado.add(controller.getRestaurantModel().getChefs().get(j).getEstatchef().ordinal());
+                }
+                for (int j = 0; j < controller.getRestaurantModel().getChefs().size(); j++) {
+                    if (chefestado.get(j) !=controller.getRestaurantModel().getChefs().get(j).getEstatchef().ordinal()){
+                        try {
 
-                        switch (controller.getRestaurantModel().getChefs().get(i).getEstatchef().ordinal()) {
-                            case 0:
-                                Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/cocinando.png")));
-                                break;
-                            case 1:
-                                Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/descanso.png")));
-                                break;
-                            case 2:
-                                Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/entregando.png")));
-                                break;
+                            switch (controller.getRestaurantModel().getChefs().get(i).getEstatchef().ordinal()) {
+                                case 0:
+                                    Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/cocinando.png")));
+                                    break;
+                                case 1:
+                                    Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/descanso.png")));
+                                    break;
+                                case 2:
+                                    Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/entregando.png")));
+                                    break;
+
+                            }
+
 
                         }
-
-
+                        catch (Exception e){
+                            System.out.println("Recogiendo valores de los cocineros");
+                        }
                     }
-                    catch (Exception e){
-                        System.out.println("Recogiendo valores de los cocineros");
-                 }
-        //        }
+                }
+
+                }
 
 
 
-            }
+
+
             for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
-       //         for (int j = 0; j < controller.getRestaurantModel().getCms().size(); j++) {
-         //           comensalestado.add(controller.getRestaurantModel().getCms().get(j).getStatuscm().ordinal());
-       //         }
-        //        if (comensalestado.get(i) !=controller.getRestaurantModel().getCms().get(i).getStatuscm().ordinal()){
-                    try {
-                        switch (controller.getRestaurantModel().getCms().get(i).getStatuscm().ordinal()) {
-                            case 0:
-                                Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/tertuliando.png")));
-                                break;
-                            case 1:
-                                Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/comiendo.png")));
-                                break;
-                            case 2:
-                                Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/recogiendo.png")));
-                                break;
+                for (int j = 0; j < controller.getRestaurantModel().getCms().size(); j++) {
+                    comensalestado.add(controller.getRestaurantModel().getCms().get(j).getStatuscm().ordinal());
+                }
+                for (int j = 0; j < controller.getRestaurantModel().getCms().size(); j++) {
+                    if (comensalestado.get(j) !=controller.getRestaurantModel().getCms().get(j).getStatuscm().ordinal()){
+                        try {
+                            switch (controller.getRestaurantModel().getCms().get(i).getStatuscm().ordinal()) {
+                                case 0:
+                                    Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/tertuliando.png")));
+                                    break;
+                                case 1:
+                                    Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/comiendo.png")));
+                                    break;
+                                case 2:
+                                    Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/recogiendo.png")));
+                                    break;
 
+                            }
                         }
-                    }
-                    catch (Exception e){
-                        System.out.println("Recogiendo valores de los comensales");
-                    }
-                }}
+                        catch (Exception e){
+                            System.out.println("Recogiendo valores de los comensales");
+                        }
+                    }}
+                }
 
-     //       }
+               }
+
+
 
 
 
