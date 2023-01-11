@@ -62,9 +62,8 @@ public class Rellotge implements Runnable{
             minutActual=0;
             System.err.println("EL RELOJ NO DEBERÍA DE DAR VALORES NEGATIVOS");
         }
-        else System.out.println();
         //Este sout cambia completamente el funcionamiento del programa :,,,)
-
+        else System.out.println("");
 
         return minutActual;
 

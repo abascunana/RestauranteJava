@@ -88,7 +88,8 @@ public class Chef implements Runnable {
 
                     tempsTotalCuinant++;
                     //Relojproblema
-                    if (this.getRellotge().getInterval(minInicio) >= getRellotge().getMiliEnMinuts(getHorariIniciDescans())) {
+                    //getRellotge().getMiliEnMinuts(getHorariIniciDescans())
+                    if (this.getRellotge().getInterval(minInicio) >= 3000) {
 
                         cocinado = true;
                         descansar();
@@ -115,7 +116,8 @@ public class Chef implements Runnable {
             status.setTempsDescansChef(tempsTotalDescans);
             //ESTO HACE LA SIMULACIÓN MÁS REALISTA PERO ESPERA TODOS LOS MINUTOS, QUITAR SI SE VE NECESARIO
         //Thread.sleep(this.getRellotge().getMiliEnMinuts(numbre));
-        Thread.sleep(this.getRellotge().minutsEnMilisegons(numbre));
+            //Thread.sleep(this.getRellotge().minutsEnMilisegons(numbre));
+        Thread.sleep(3000);
     }
     public void entregarPlat() throws InterruptedException {
 
@@ -123,6 +125,7 @@ public class Chef implements Runnable {
             this.setEstatchef(Estatchef.entregant);
             Platos+=1;
             status.setPlatsCuinatChef(Platos);
+        Thread.sleep(3000);
             this.getGrill().afegirplat();
 
 
@@ -211,6 +214,8 @@ public class Chef implements Runnable {
     } catch (InterruptedException e) {
         throw new RuntimeException(e);
     }
+
+
 
 }
 
