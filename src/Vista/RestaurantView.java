@@ -222,7 +222,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
                             Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/cocinando.png")));
                             break;
                         case 1:
-                            Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/descansando.png")));
+                            Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/descanso.png")));
                             break;
                         case 2:
                             Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/entregando.png")));

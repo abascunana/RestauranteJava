@@ -16,13 +16,13 @@ public class Chef implements Runnable {
     }
 
     private Estatchef estatchef;
-    private int tempsTotalCuinant;
-    private int tempsNoDescans;
-    private int nombrePlatsCuinats;
-    private int horariIniciDescans;
-    private int tempsTotalDescans;
+    private long tempsTotalCuinant;
+    private long tempsNoDescans;
+    private long nombrePlatsCuinats;
+    private long horariIniciDescans;
+    private long tempsTotalDescans;
     private Grill grill;
-    private int tempsEspera;
+    private long tempsEspera;
     private Rellotge rellotge;
     private AreaBuffet areaBuffet;
     private int Platos=0;
@@ -81,14 +81,14 @@ public class Chef implements Runnable {
                 this.setEstatchef(Estatchef.cuinant);
 
                 boolean cocinado = false;
-                int minInicio;
+                long minInicio;
                 minInicio = this.getRellotge().getMinutActual();
             System.out.println("cocinando");
                 while (!cocinado) {
 
                     tempsTotalCuinant++;
                     //Relojproblema
-                    if (this.getRellotge().getInterval(minInicio) >= getRellotge().getMiliEnMinuts(this.getHorariIniciDescans())) {
+                    if (this.getRellotge().getInterval(minInicio) >= getRellotge().getMiliEnMinuts(getHorariIniciDescans())) {
 
                         cocinado = true;
                         descansar();
@@ -109,7 +109,7 @@ public class Chef implements Runnable {
 
             this.setEstatchef(Estatchef.descansant);
             Random rm = new Random();
-            int numbre = rm.nextInt(this.getRm().getPs().tempsDescans.getMin(), this.getRm().getPs().tempsDescans.getMax());
+            long numbre = rm.nextInt(this.getRm().getPs().tempsDescans.getMin(), this.getRm().getPs().tempsDescans.getMax());
             System.out.println("descansando");
             tempsTotalDescans+=1;
             status.setTempsDescansChef(tempsTotalDescans);
@@ -147,43 +147,43 @@ public class Chef implements Runnable {
     }
 
 
-    public int getTempsTotalCuinant() {
+    public long getTempsTotalCuinant() {
         return tempsTotalCuinant;
     }
 
-    public void setTempsTotalCuinant(int tempsTotalCuinant) {
+    public void setTempsTotalCuinant(long tempsTotalCuinant) {
         this.tempsTotalCuinant = tempsTotalCuinant;
     }
 
-    public int getTempsNoDescans() {
+    public long getTempsNoDescans() {
         return tempsNoDescans;
     }
 
-    public void setTempsNoDescans(int tempsNoDescans) {
+    public void setTempsNoDescans(long tempsNoDescans) {
         this.tempsNoDescans = tempsNoDescans;
     }
 
-    public int getNombrePlatsCuinats() {
+    public long getNombrePlatsCuinats() {
         return nombrePlatsCuinats;
     }
 
-    public void setNombrePlatsCuinats(int nombrePlatsCuinats) {
+    public void setNombrePlatsCuinats(long nombrePlatsCuinats) {
         this.nombrePlatsCuinats = nombrePlatsCuinats;
     }
 
-    public int getHorariIniciDescans() {
+    public long getHorariIniciDescans() {
         return horariIniciDescans;
     }
 
-    public void setHorariIniciDescans(int horariIniciDescans) {
+    public void setHorariIniciDescans(long horariIniciDescans) {
         this.horariIniciDescans = horariIniciDescans;
     }
 
-    public int getTempsTotalDescans() {
+    public long getTempsTotalDescans() {
         return tempsTotalDescans;
     }
 
-    public void setTempsTotalDescans(int tempsTotalDescans) {
+    public void setTempsTotalDescans(long tempsTotalDescans) {
         this.tempsTotalDescans = tempsTotalDescans;
     }
 
@@ -191,11 +191,11 @@ public class Chef implements Runnable {
         return grill;
     }
 
-    public int getTempsEspera() {
+    public long getTempsEspera() {
         return tempsEspera;
     }
 
-    public void setTempsEspera(int tempsEspera) {
+    public void setTempsEspera(long tempsEspera) {
         this.tempsEspera = tempsEspera;
     }
 

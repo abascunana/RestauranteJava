@@ -2,19 +2,19 @@ package Otro;
 
 public class EstadistiquesChefs {
     //estadísticas generales de los chefs
-    public int tempsDescansChef;
-    public int platsCuinatChef;
+    public long tempsDescansChef;
+    public long platsCuinatChef;
     public int[] chefsPerEstat = new int[3];
 
-    public int getTempsDescansChef() {
+    public long getTempsDescansChef() {
         return tempsDescansChef;
     }
 
-    public void setTempsDescansChef(int tempsDescansChef) {
+    public void setTempsDescansChef(long tempsDescansChef) {
         this.tempsDescansChef = tempsDescansChef;
     }
 
-    public int getPlatsCuinatChef() {
+    public long getPlatsCuinatChef() {
         return platsCuinatChef;
     }
 

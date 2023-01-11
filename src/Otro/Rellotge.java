@@ -26,8 +26,8 @@ public class Rellotge implements Runnable{
 
     private static RestaurantModel rm;
 
-    private static int minutActual;
-    private static int multiplicadorTemps;
+    private static long minutActual;
+    private static long multiplicadorTemps;
 
 
 
@@ -57,15 +57,14 @@ public class Rellotge implements Runnable{
     }
 
 
-    public int getMinutActual() {
+    public long getMinutActual() {
         if (minutActual < 0) {
             minutActual=0;
             System.err.println("EL RELOJ NO DEBERÍA DE DAR VALORES NEGATIVOS");
         }
+        else System.out.println();
         //Este sout cambia completamente el funcionamiento del programa :,,,)
-        else {
-            System.out.println();
-        }
+
 
         return minutActual;
 
@@ -73,15 +72,15 @@ public class Rellotge implements Runnable{
     }
 
 //Esto lo que hace es que cada actividad (descansar, cocinar...) pueda calcular el intervalo de inicio de actividad al tiempo transcurrido al realizar la actividad
-    public int getInterval(int minutInicioActividad){
+    public long getInterval(long minutInicioActividad){
         return getMinutActual() - minutInicioActividad;
     }
 
-    public int getMiliEnMinuts(int minutActual){
+    public long getMiliEnMinuts(long minutActual){
         return minutActual * 60000;
     }
 
-    public int minutsEnMilisegons(int minutActual){
+    public long minutsEnMilisegons(long minutActual){
         return minutActual / 60000;
     }
 

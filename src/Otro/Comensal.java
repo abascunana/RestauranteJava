@@ -10,13 +10,13 @@ public class Comensal implements Runnable{
 
     //rever vídeo threads
     private static EstadistiquesComensals estadistiquescomensal;
-    private int platsMenjats;
-    private int tempsMenjat;
-    private int tempsEspera;
+    private long platsMenjats;
+    private long tempsMenjat;
+    private long tempsEspera;
     private Rellotge rellotge;
     private RestaurantModel rm;
     private Estatcomensal Statuscm;
-    private int tempsTertulia;
+    private long tempsTertulia;
     private ParametresSimulacio parametresSimulacio;
 
     public boolean isPaused() {
@@ -72,37 +72,37 @@ public class Comensal implements Runnable{
         return rellotge;
     }
 
-    public int getTempsEspera() {
+    public long getTempsEspera() {
         return tempsEspera;
     }
 
-    public void setTempsEspera(int tempsEspera) {
+    public void setTempsEspera(long tempsEspera) {
         this.tempsEspera = tempsEspera;
     }
 
 
 
-    public int getPlatsMenjats() {
+    public long getPlatsMenjats() {
         return platsMenjats;
     }
 
-    public void setPlatsMenjats(int platsMenjats) {
+    public void setPlatsMenjats(long platsMenjats) {
         this.platsMenjats = platsMenjats;
     }
 
-    public int getTempsMenjat() {
+    public long getTempsMenjat() {
         return tempsMenjat;
     }
 
-    public void setTempsMenjat(int tempsMenjat) {
+    public void setTempsMenjat(long tempsMenjat) {
         this.tempsMenjat = tempsMenjat;
     }
 
-    public int getTempsTertulia() {
+    public long getTempsTertulia() {
         return tempsTertulia;
     }
 
-    public void setTempsTertulia(int tempsTertulia) {
+    public void setTempsTertulia(long tempsTertulia) {
         this.tempsTertulia = tempsTertulia;
     }
 
@@ -132,8 +132,8 @@ public class Comensal implements Runnable{
       System.out.println("comiendo");
        Random rm = new Random();
        agafarPlat(getAreaBuffet());
-       int minInicio = this.getRellotge().getMinutActual();
-       int numbre= rm.nextInt( this.getRm().getPs().tempsConsumir.getMin(), this.getRm().getPs().tempsConsumir.getMax());
+       long minInicio = this.getRellotge().getMinutActual();
+       long numbre= rm.nextInt( this.getRm().getPs().tempsConsumir.getMin(), this.getRm().getPs().tempsConsumir.getMax());
        //Relojproblema
        if (this.getRellotge().getInterval(minInicio) >= getRellotge().minutsEnMilisegons(numbre)) {
 
@@ -151,8 +151,8 @@ public class Comensal implements Runnable{
             this.tempsTertulia+=1;
 
             Random rm = new Random();
-            int minInicio = this.getRellotge().getMinutActual();
-            int numbre= rm.nextInt( this.getRm().getPs().tempsTertulia.getMin(), this.getRm().getPs().tempsTertulia.getMax());
+            long minInicio = this.getRellotge().getMinutActual();
+            long numbre= rm.nextInt( this.getRm().getPs().tempsTertulia.getMin(), this.getRm().getPs().tempsTertulia.getMax());
             //TODO EL RELOJ TIENE QUE INICIALSE EN OTRO LUGAR O MODIFICARLO PARA QUE NO VAYA TAN RÁPIDO
             //Relojproblema
             if (this.getRellotge().getInterval(minInicio) >=this.getRellotge().minutsEnMilisegons( numbre) ){
