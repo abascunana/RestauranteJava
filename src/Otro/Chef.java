@@ -117,7 +117,8 @@ public class Chef implements Runnable {
             //ESTO HACE LA SIMULACIÓN MÁS REALISTA PERO ESPERA TODOS LOS MINUTOS, QUITAR SI SE VE NECESARIO
         //Thread.sleep(this.getRellotge().getMiliEnMinuts(numbre));
             //Thread.sleep(this.getRellotge().minutsEnMilisegons(numbre));
-        Thread.sleep(3000);
+        Thread.sleep(rm.nextInt(1000,3000));
+
     }
     public void entregarPlat() throws InterruptedException {
 
@@ -125,7 +126,9 @@ public class Chef implements Runnable {
             this.setEstatchef(Estatchef.entregant);
             Platos+=1;
             status.setPlatsCuinatChef(Platos);
-        Thread.sleep(3000);
+
+            //Para que el iconito se vea
+            Thread.sleep(3000);
             this.getGrill().afegirplat();
 
 
