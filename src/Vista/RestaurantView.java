@@ -276,11 +276,6 @@ public void Pintar(){
     public void paint(Graphics g) {
         super.paint(g);
         //son los chefs
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         Pintar();
 
     }
