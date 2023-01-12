@@ -237,7 +237,7 @@ public void Pintar(){
                 }
             }
             catch (Exception e){
-                System.out.println("Recogiendo valores de los comensales");
+
             }
         }
     for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
@@ -260,7 +260,7 @@ public void Pintar(){
 
             }
             catch (Exception e){
-                System.out.println("Recogiendo valores de los cocineros");
+
             }
 
     }
@@ -272,6 +272,18 @@ public void Pintar(){
 
 
 
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        //son los chefs
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        Pintar();
+
+    }
 
     @Override
     public void run() {
