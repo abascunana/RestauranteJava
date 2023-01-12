@@ -20,6 +20,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
     JButton buttonPlay;
     JButton buttonStop;
     JButton buttonStart;
+    JPanel paneli;
     //Vista experimental, clientes y cocineros se deben de generar dinámicamente en el thread
     public RestaurantController getController() {
         return controller;
@@ -76,6 +77,8 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             c.weightx = .1;
             getContentPane().add(paneli(), c);
 
+
+
             // ----------- EMPAQUETAR --------------------------
             //Pack es una forma más sencilla de establecer que el espacio requerido por cada componente sea establecido de forma automática, en preferencia a establecerlo manualmente
             pack();
@@ -93,7 +96,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
 
             Box.Filler filler = new Box.Filler(getMaximumSize(),getMinimumSize(),getPreferredSize());
 
-            JPanel paneli = new JPanel(new GridBagLayout());
+            paneli = new JPanel(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
             c.gridy=0;
             c.gridx=0;
@@ -116,39 +119,12 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             pans.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
             pans.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-            generarElementos(c,paneli);
+            Elementos();
             return pans;
         }
         //Mejorar la forma en la que se pintan los cacharros estos para evitar sobrecarga de recursos
-        private void generarElementos(GridBagConstraints c,JPanel paneli){
-            //son los chefs
-            for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
-                c.gridx=1+i;
-                c.weightx = 1;
-                c.gridwidth=1;
-                c.fill = GridBagConstraints.BOTH;
-                ImageIcon cliente=new ImageIcon("src/Imagenes/Clientes/cliente.png");
-                Clientes[i] = new JLabel(cliente);
-                Clientes[i].setPreferredSize(new Dimension(10,1));
-                paneli.add(Clientes[i],c);
+    //implementar en paint
 
-            }
-//son los clientes
-            for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
-                c.gridx=controller.getRestaurantModel().getCms().size()+1+i;
-                c.weightx =1;
-                c.gridwidth=1;
-                c.fill = GridBagConstraints.BOTH;
-                Cocineros[i] = new JLabel(new ImageIcon("src/Imagenes/Cocineros/cocinero.png"));
-                Cocineros[i].setPreferredSize(new Dimension(10,1));
-                paneli.add(Cocineros[i],c);
-            }
-
-            Box.Filler filler2 = new Box.Filler(getMaximumSize(),getMinimumSize(),getPreferredSize());
-            c.gridx=37;
-            paneli.add(filler2,c);
-
-        }
 
         private JScrollPane generarPanelIzquierdo() {
             //Panel es el espacio en el que se colocarán los elementos
@@ -211,75 +187,87 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             return panel;
         }
 
+//implementar paint
+public void Elementos(){
+    GridBagConstraints c = new GridBagConstraints();
+    for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
+        c.gridx=1+i;
+        c.weightx = 1;
+        c.gridwidth=1;
+        c.fill = GridBagConstraints.BOTH;
+        ImageIcon cliente=new ImageIcon("src/Imagenes/Clientes/cliente.png");
+        Clientes[i] = new JLabel(cliente);
+        Clientes[i].setPreferredSize(new Dimension(10,1));
+        paneli.add(Clientes[i],c);
 
-    public void cambiarValores(){
-            //Cocinero: cocinando verde, descansando azul, entregando amarillo
-            //AlmacenarEstados
-        ArrayList <Integer> chefestado = new ArrayList<>();
-        ArrayList <Integer> comensalestado = new ArrayList<>();
-            //Comnesal: tertuliando verde, comiendo azul, recogiendo plato amarillo
-            for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
-                for (int j = 0; j < controller.getRestaurantModel().getChefs().size(); j++) {
-                    chefestado.add(controller.getRestaurantModel().getChefs().get(j).getEstatchef().ordinal());
+    }
+//son los clientes
+    for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
+        c.gridx=controller.getRestaurantModel().getCms().size()+1+i;
+        c.weightx =1;
+        c.gridwidth=1;
+        c.fill = GridBagConstraints.BOTH;
+        Cocineros[i] = new JLabel(new ImageIcon("src/Imagenes/Cocineros/cocinero.png"));
+        Cocineros[i].setPreferredSize(new Dimension(10,1));
+        paneli.add(Cocineros[i],c);
+    }
+    Box.Filler filler2 = new Box.Filler(getMaximumSize(),getMinimumSize(),getPreferredSize());
+    c.gridx=37;
+    paneli.add(filler2,c);
+}
+
+
+public void Pintar(){
+
+
+
+    for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
+            try {
+                switch (controller.getRestaurantModel().getCms().get(i).getStatuscm().ordinal()) {
+                    case 0:
+                        Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/tertuliando.png")));
+                        break;
+                    case 1:
+                        Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/comiendo.png")));
+                        break;
+                    case 2:
+                        Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/recogiendo.png")));
+                        break;
+
                 }
-                for (int j = 0; j < controller.getRestaurantModel().getChefs().size(); j++) {
-                    if (chefestado.get(j) !=controller.getRestaurantModel().getChefs().get(j).getEstatchef().ordinal()){
-                        try {
+            }
+            catch (Exception e){
+                System.out.println("Recogiendo valores de los comensales");
+            }
+        }
+    for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
 
-                            switch (controller.getRestaurantModel().getChefs().get(i).getEstatchef().ordinal()) {
-                                case 0:
-                                    Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/cocinando.png")));
-                                    break;
-                                case 1:
-                                    Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/descanso.png")));
-                                    break;
-                                case 2:
-                                    Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/entregando.png")));
-                                    break;
+            try {
 
-                            }
-
-
-                        }
-                        catch (Exception e){
-                            System.out.println("Recogiendo valores de los cocineros");
-                        }
-                    }
-                }
+                switch (controller.getRestaurantModel().getChefs().get(i).getEstatchef().ordinal()) {
+                    case 0:
+                        Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/cocinando.png")));
+                        break;
+                    case 1:
+                        Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/descanso.png")));
+                        break;
+                    case 2:
+                        Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/entregando.png")));
+                        break;
 
                 }
 
 
+            }
+            catch (Exception e){
+                System.out.println("Recogiendo valores de los cocineros");
+            }
 
+    }
 
+    repaint();
+}
 
-            for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
-                for (int j = 0; j < controller.getRestaurantModel().getCms().size(); j++) {
-                    comensalestado.add(controller.getRestaurantModel().getCms().get(j).getStatuscm().ordinal());
-                }
-                for (int j = 0; j < controller.getRestaurantModel().getCms().size(); j++) {
-                    if (comensalestado.get(j) !=controller.getRestaurantModel().getCms().get(j).getStatuscm().ordinal()){
-                        try {
-                            switch (controller.getRestaurantModel().getCms().get(i).getStatuscm().ordinal()) {
-                                case 0:
-                                    Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/tertuliando.png")));
-                                    break;
-                                case 1:
-                                    Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/comiendo.png")));
-                                    break;
-                                case 2:
-                                    Clientes[i].setIcon((new ImageIcon("src/Imagenes/Clientes/recogiendo.png")));
-                                    break;
-
-                            }
-                        }
-                        catch (Exception e){
-                            System.out.println("Recogiendo valores de los comensales");
-                        }
-                    }}
-                }
-
-               }
 
 
 
@@ -288,7 +276,7 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
     @Override
     public void run() {
 while (true){
-    cambiarValores();
+   Pintar();
 }
 
         /*Utilizado para actualizar los paneles de la vista dependiendo de lo que envíe el controlador en sus estadísticas

@@ -155,6 +155,7 @@ public class Comensal implements Runnable{
             long numbre= rm.nextInt( this.getRm().getPs().tempsTertulia.getMin(), this.getRm().getPs().tempsTertulia.getMax());
             //TODO EL RELOJ TIENE QUE INICIALSE EN OTRO LUGAR O MODIFICARLO PARA QUE NO VAYA TAN RÁPIDO
             //Relojproblema
+        //this.getRellotge().minutsEnMilisegons( numbre)
             if (this.getRellotge().getInterval(minInicio) >=this.getRellotge().minutsEnMilisegons( numbre) ){
                 for (int i = 0; i < getRm().getAb().size(); i++) {
                     if (getRm().getAb().get(i).getQuantitatActual() > 0) {

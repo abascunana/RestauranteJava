@@ -89,7 +89,7 @@ public class Chef implements Runnable {
                     tempsTotalCuinant++;
                     //Relojproblema
                     //getRellotge().getMiliEnMinuts(getHorariIniciDescans())
-                    if (this.getRellotge().getInterval(minInicio) >= 3000) {
+                    if (this.getRellotge().getInterval(minInicio) >= getRellotge().getMiliEnMinuts(getHorariIniciDescans())) {
 
                         cocinado = true;
                         descansar();
