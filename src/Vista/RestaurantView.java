@@ -191,8 +191,10 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
 public void Elementos(){
     GridBagConstraints c = new GridBagConstraints();
     for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
+        c.gridy=2;
         c.gridx=1+i;
         c.weightx = 1;
+        c.weighty =1;
         c.gridwidth=1;
         c.fill = GridBagConstraints.BOTH;
         ImageIcon cliente=new ImageIcon("src/Imagenes/Clientes/cliente.png");
@@ -201,16 +203,55 @@ public void Elementos(){
         paneli.add(Clientes[i],c);
 
     }
+    c.gridx=1;
+    c.gridy=1;
+    c.fill = GridBagConstraints.BOTH;
+    JLabel mesa = new JLabel(new ImageIcon("src/Imagenes/Props/Mesa.png"));
+    paneli.add(mesa,c);
+
+    c.gridx=2;
+    c.gridy=1;
+    c.fill = GridBagConstraints.BOTH;
+    JLabel taco = new JLabel(new ImageIcon("src/Imagenes/Props/Taco.png"));
+    paneli.add(taco,c);
+
+    c.gridx=3;
+    c.gridy=1;
+    c.fill = GridBagConstraints.BOTH;
+    JLabel mesa1 = new JLabel(new ImageIcon("src/Imagenes/Props/Mesa.png"));
+    paneli.add(mesa1,c);
+
+    c.gridx=4;
+    c.gridy=1;
+    c.fill = GridBagConstraints.BOTH;
+    JLabel taco1 = new JLabel(new ImageIcon("src/Imagenes/Props/Taco.png"));
+    paneli.add(taco1,c);
+
+    c.gridx=5;
+    c.gridy=1;
+    c.fill = GridBagConstraints.BOTH;
+    JLabel mesa2 = new JLabel(new ImageIcon("src/Imagenes/Props/Mesa.png"));
+    paneli.add(mesa2,c);
+
+    c.gridx=6;
+    c.gridy=1;
+    c.fill = GridBagConstraints.BOTH;
+    JLabel taco2 = new JLabel(new ImageIcon("src/Imagenes/Props/Taco.png"));
+    paneli.add(taco2,c);
+
 //son los clientes
     for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
-        c.gridx=controller.getRestaurantModel().getCms().size()+1+i;
+        c.gridy=0;
+        c.gridx=1+i;
         c.weightx =1;
+
         c.gridwidth=1;
         c.fill = GridBagConstraints.BOTH;
         Cocineros[i] = new JLabel(new ImageIcon("src/Imagenes/Cocineros/cocinero.png"));
         Cocineros[i].setPreferredSize(new Dimension(10,1));
         paneli.add(Cocineros[i],c);
     }
+
     Box.Filler filler2 = new Box.Filler(getMaximumSize(),getMinimumSize(),getPreferredSize());
     c.gridx=37;
     paneli.add(filler2,c);
@@ -218,8 +259,6 @@ public void Elementos(){
 
 
 public void Pintar(){
-
-
 
     for (int i = 0; i < controller.getRestaurantModel().getCms().size(); i++) {
             try {
@@ -241,9 +280,7 @@ public void Pintar(){
             }
         }
     for (int i = 0; i < controller.getRestaurantModel().getChefs().size(); i++) {
-
             try {
-
                 switch (controller.getRestaurantModel().getChefs().get(i).getEstatchef().ordinal()) {
                     case 0:
                         Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/cocinando.png")));
@@ -254,10 +291,7 @@ public void Pintar(){
                     case 2:
                         Cocineros[i].setIcon((new ImageIcon("src/Imagenes/Cocineros/entregando.png")));
                         break;
-
                 }
-
-
             }
             catch (Exception e){
 
@@ -283,6 +317,12 @@ public void Pintar(){
     @Override
     public void run() {
 while (true){
+
+    try {
+        Thread.sleep(100);
+    } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+    }
    Pintar();
 }
 
