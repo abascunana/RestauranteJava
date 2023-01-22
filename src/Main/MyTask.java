@@ -19,11 +19,21 @@ public class MyTask {
         Estadistiques estadistiques = new Estadistiques(estadistiquesChefs,estadistiquesComensals,estadistiquesBuffets);
 
         //Restaurante
+        ArrayList<AreaBuffet> areaBuffets = new ArrayList<>();
+        AreaBuffet areaBuffettacos = new AreaBuffet("tacos",100);
+        AreaBuffet areaBuffethamburger = new AreaBuffet("hamburger",100);
+        AreaBuffet areaBuffetshrimp = new AreaBuffet("shrimp",100);
 
-        AreaBuffet areaBuffet = new AreaBuffet("tacos",100);
+        areaBuffets.add(areaBuffettacos);
+        areaBuffets.add(areaBuffethamburger);
+        areaBuffets.add(areaBuffetshrimp);
 
         ColaPlatsCuinats colaPlatsCuinats = new ColaPlatsCuinats(100);
-        colaPlatsCuinats.setAreaBuffet(areaBuffet);
+       //todo Esto debería ser un arraylist
+            colaPlatsCuinats.setAreaBuffet(areaBuffettacos);
+
+
+
         //
 
         //Listas
@@ -33,9 +43,9 @@ public class MyTask {
         //
 
         for (int i = 0; i < 3; i++) {
-            Grill grill = new Grill(areaBuffet,100,colaPlatsCuinats);
+            Grill grill = new Grill(areaBuffets.get(i),100,colaPlatsCuinats);
             grills.add(grill);
-            areaBuffet.setGrill(grill);
+            areaBuffets.get(i).setGrill(grill);
         }
 
 
@@ -51,7 +61,7 @@ public class MyTask {
 
 
         for (int i = 0; i < 9; i++){
-            Chef chef = new Chef(rellotge,grills.get(random.nextInt(grills.size())),areaBuffet);
+            Chef chef = new Chef(rellotge,grills.get(random.nextInt(grills.size())),areaBuffets.get(random.nextInt(areaBuffets.size())));
             chefs.add(chef);
         }
 
@@ -62,15 +72,18 @@ public class MyTask {
 ///Lógica del restaurante
         RestaurantModel restaurantModel = new RestaurantModel(comensals,chefs,rellotge,grills);
         rellotge.setRm(restaurantModel);
-        restaurantModel.getAb().add(areaBuffet);
+        for (int i = 0; i < areaBuffets.size(); i++) {
+            restaurantModel.getAb().add(areaBuffets.get(i));
+        }
+
         for (int i = 0; i < comensals.size(); i++) {
             comensals.get(i).setRm(restaurantModel);
-            comensals.get(i).setAreaBuffet(areaBuffet);
+            comensals.get(i).setAreaBuffet(areaBuffets.get(random.nextInt(areaBuffets.size())));
         }
 
         for (int i = 0; i < chefs.size(); i++) {
             chefs.get(i).setRm(restaurantModel);
-            chefs.get(i).setAreaBuffet(areaBuffet);
+            chefs.get(i).setAreaBuffet(areaBuffets.get(random.nextInt(areaBuffets.size())));
         }
 
 

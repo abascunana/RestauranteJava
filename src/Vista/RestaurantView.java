@@ -224,7 +224,7 @@ public void Elementos(){
     c.gridx=4;
     c.gridy=1;
     c.fill = GridBagConstraints.BOTH;
-    JLabel taco1 = new JLabel(new ImageIcon("src/Imagenes/Props/Taco.png"));
+    JLabel taco1 = new JLabel(new ImageIcon("src/Imagenes/Props/hamburger.png"));
     paneli.add(taco1,c);
 
     c.gridx=5;
@@ -236,7 +236,7 @@ public void Elementos(){
     c.gridx=6;
     c.gridy=1;
     c.fill = GridBagConstraints.BOTH;
-    JLabel taco2 = new JLabel(new ImageIcon("src/Imagenes/Props/Taco.png"));
+    JLabel taco2 = new JLabel(new ImageIcon("src/Imagenes/Props/shrimp.png"));
     paneli.add(taco2,c);
 
 //son los clientes
