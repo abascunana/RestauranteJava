@@ -39,10 +39,10 @@ public class Grill extends BufferPlats {
     }
 
     public synchronized void posarEnServei(){
-        this.setEnServei(true);
+        enServei = true;
     }
     public synchronized void treureDeServei(){
-        this.setEnServei(false);
+        enServei = false;
     }
 
     public boolean isEnServei() {
@@ -57,7 +57,6 @@ public class Grill extends BufferPlats {
         super(cm);
         this.areaBuffet = areaBuffet;
         this.posarEnServei();
-        //No entiendo muy bien para que srve esta variable
         this.colaPlatCuinats =cps;
 
     }

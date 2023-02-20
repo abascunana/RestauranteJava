@@ -14,7 +14,6 @@ public class Chef implements Runnable {
     public void setEstatchef(Estatchef estatchef) {
         this.estatchef = estatchef;
     }
-
     private Estatchef estatchef;
     private long tempsTotalCuinant;
     private long tempsNoDescans;
@@ -56,9 +55,6 @@ public class Chef implements Runnable {
     public RestaurantModel getRm() {
         return rm;
     }
-
-
-
     public Chef(Rellotge rellotge, Grill grill, AreaBuffet areaBuffet) {
         this.tempsTotalCuinant = 0;
         this.tempsNoDescans = 0;
@@ -73,32 +69,25 @@ public class Chef implements Runnable {
 
     }
                                                                               
-    public  void cuinar() throws InterruptedException {
-
+    public void cuinar() throws InterruptedException {
         while (this.getAreaBuffet().getColaPlatCuinats().getQuantitatActual() < this.getAreaBuffet().getCapacitatMaxima()) {
-                this.grill.setEnServei(true);
-
+                this.grill.posarEnServei();
                 this.setEstatchef(Estatchef.cuinant);
-
                 boolean cocinado = false;
                 long minInicio;
                 minInicio = this.getRellotge().getMinutActual();
-            System.out.println("cocinando");
                 while (!cocinado) {
-
                     tempsTotalCuinant++;
                     //Relojproblema
                     //getRellotge().getMiliEnMinuts(getHorariIniciDescans())
-                    if (this.getRellotge().getInterval(minInicio) >= getRellotge().getMiliEnMinuts(getHorariIniciDescans())) {
-
+                    if (this.getRellotge().getInterval(minInicio) >=3) {
                         cocinado = true;
                         descansar();
                         entregarPlat();
-
                     }
                 }
             }
-        this.grill.setEnServei(false);
+        this.grill.treureDeServei();
         }
 
 
@@ -111,25 +100,21 @@ public class Chef implements Runnable {
             this.setEstatchef(Estatchef.descansant);
             Random rm = new Random();
             long numbre = rm.nextInt(this.getRm().getPs().tempsDescans.getMin(), this.getRm().getPs().tempsDescans.getMax());
-            System.out.println("descansando");
             tempsTotalDescans+=1;
             status.setTempsDescansChef(tempsTotalDescans);
             //ESTO HACE LA SIMULACIÓN MÁS REALISTA PERO ESPERA TODOS LOS MINUTOS, QUITAR SI SE VE NECESARIO
         //Thread.sleep(this.getRellotge().getMiliEnMinuts(numbre));
-            //Thread.sleep(this.getRellotge().minutsEnMilisegons(numbre));
-        Thread.sleep(rm.nextInt(1000,3000));
+            Thread.sleep(this.getRellotge().minutsEnMilisegons(numbre));
+
 
     }
-    public void entregarPlat() throws InterruptedException {
-
-            System.out.println("entregando");
+    public void entregarPlat(){
+        System.out.println(this + " ha entregado el plato hora:" + this.getRellotge().getMinutActual());
             this.setEstatchef(Estatchef.entregant);
             Platos+=1;
             status.setPlatsCuinatChef(Platos);
-
-            //Para que el iconito se vea
-            Thread.sleep(3000);
             this.getGrill().afegirplat();
+
 
 
     }
@@ -211,15 +196,11 @@ public class Chef implements Runnable {
 
     @Override
     public void run() {
-
     try {
         cuinar();
     } catch (InterruptedException e) {
         throw new RuntimeException(e);
     }
-
-
-
 }
 
 

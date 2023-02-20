@@ -3,7 +3,6 @@ package Main;
 import Controlador.RestaurantController;
 import Modelo.RestaurantModel;
 import Otro.*;
-import Vista.RestaurantView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -29,8 +28,7 @@ public class MyTask {
         areaBuffets.add(areaBuffetshrimp);
 
         ColaPlatsCuinats colaPlatsCuinats = new ColaPlatsCuinats(100);
-       //todo Esto debería ser un arraylist
-            colaPlatsCuinats.setAreaBuffet(areaBuffettacos);
+        colaPlatsCuinats.setAreaBuffet(areaBuffettacos);
 
 
 
@@ -73,17 +71,17 @@ public class MyTask {
         RestaurantModel restaurantModel = new RestaurantModel(comensals,chefs,rellotge,grills);
         rellotge.setRm(restaurantModel);
         for (int i = 0; i < areaBuffets.size(); i++) {
-            restaurantModel.getAb().add(areaBuffets.get(i));
+            restaurantModel.getAb().add(areaBuffettacos);
         }
 
         for (int i = 0; i < comensals.size(); i++) {
             comensals.get(i).setRm(restaurantModel);
-            comensals.get(i).setAreaBuffet(areaBuffets.get(random.nextInt(areaBuffets.size())));
+            comensals.get(i).setAreaBuffet(areaBuffettacos);
         }
 
         for (int i = 0; i < chefs.size(); i++) {
             chefs.get(i).setRm(restaurantModel);
-            chefs.get(i).setAreaBuffet(areaBuffets.get(random.nextInt(areaBuffets.size())));
+            chefs.get(i).setAreaBuffet(areaBuffettacos);
         }
 
 
@@ -97,9 +95,15 @@ public class MyTask {
 
         restaurantController.setEstadistiques(estadistiques);
         restaurantModel.setController(restaurantController);
-        RestaurantView restaurantView = new RestaurantView(restaurantController);
-        restaurantController.setRestaurantView(restaurantView);
+        /*
+        RestaurantVentana restaurantVentana = new RestaurantVentana(restaurantController);
+        restaurantController.setRestaurantView(restaurantVentana);*/
 
+        try {
+            restaurantModel.start();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }

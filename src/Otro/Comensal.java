@@ -5,7 +5,7 @@ import Modelo.RestaurantModel;
 import java.util.Random;
 import Modelo.RestaurantModel;
 
-public class Comensal implements Runnable{
+public class Comensal implements Runnable {
 
 
     //rever vídeo threads
@@ -30,7 +30,6 @@ public class Comensal implements Runnable{
     private boolean paused;
 
 
-
     private static Estadistiques stats;
 
 
@@ -43,6 +42,7 @@ public class Comensal implements Runnable{
     }
 
     private AreaBuffet areaBuffet;
+
     public static Estadistiques getStats() {
         return stats;
     }
@@ -81,7 +81,6 @@ public class Comensal implements Runnable{
     }
 
 
-
     public long getPlatsMenjats() {
         return platsMenjats;
     }
@@ -118,62 +117,55 @@ public class Comensal implements Runnable{
         this.platsMenjats = 0;
         this.tempsMenjat = 0;
         this.tempsTertulia = 0;
-        this.tempsEspera=0;
+        this.tempsEspera = 0;
         this.rellotge = rellotge;
 
 
+    }
+
+    public void menjar() {
+        this.setStatuscm(Statuscm.menjant);
+        this.tempsMenjat += 1;
+        Random rm = new Random();
+        agafarPlat(getAreaBuffet());
+        long minInicio = this.getRellotge().getMinutActual();
+        long numbre = rm.nextInt(this.getRm().getPs().tempsConsumir.getMin(), this.getRm().getPs().tempsConsumir.getMax());
+        //Relojproblema
+        if (this.getRellotge().getInterval(minInicio) >= getRellotge().getMiliEnMinuts(numbre)) {
+            tertulia();
+        }
 
 
     }
 
-     public void menjar() {
-       this.setStatuscm(Statuscm.menjant);
-       this.tempsMenjat+=1;
-      System.out.println("comiendo");
-       Random rm = new Random();
-       agafarPlat(getAreaBuffet());
-       long minInicio = this.getRellotge().getMinutActual();
-       long numbre= rm.nextInt( this.getRm().getPs().tempsConsumir.getMin(), this.getRm().getPs().tempsConsumir.getMax());
-       //Relojproblema
-       if (this.getRellotge().getInterval(minInicio) >= getRellotge().minutsEnMilisegons(numbre)) {
+    public void tertulia() {
 
-             tertulia();
-
-         }
-
-
-    }
-
-    public void tertulia()  {
-
-
-            this.setStatuscm(Statuscm.xerrant);
-            this.tempsTertulia+=1;
-
-            Random rm = new Random();
-            long minInicio = this.getRellotge().getMinutActual();
-            long numbre= rm.nextInt( this.getRm().getPs().tempsTertulia.getMin(), this.getRm().getPs().tempsTertulia.getMax());
-            //TODO EL RELOJ TIENE QUE INICIALSE EN OTRO LUGAR O MODIFICARLO PARA QUE NO VAYA TAN RÁPIDO
-            //Relojproblema
-        //this.getRellotge().minutsEnMilisegons( numbre)
-            if (this.getRellotge().getInterval(minInicio) >=this.getRellotge().minutsEnMilisegons( numbre) ){
-                for (int i = 0; i < getRm().getAb().size(); i++) {
+        this.setStatuscm(Statuscm.xerrant);
+        this.tempsTertulia += 1;
+        Random rm = new Random();
+        long minInicio = this.getRellotge().getMinutActual();
+        long numbre = rm.nextInt(this.getRm().getPs().tempsTertulia.getMin(), this.getRm().getPs().tempsTertulia.getMax());
+        while (this.getRellotge().getInterval(minInicio) >= this.getRellotge().minutsEnMilisegons(numbre)) {
+            for (int i = 0; i < getRm().getAb().size(); i++) {
                     if (getRm().getAb().get(i).getQuantitatActual() > 0) {
                         menjar();
+
                     }
                 }
 
+            }
+
         }
 
-    }
 
 
-    public void agafarPlat(AreaBuffet areaBuffet)  {
+
+    public void agafarPlat(AreaBuffet areaBuffet) {
+        System.out.println(this + "ha recogido plato hora:" + this.getRellotge().getMinutActual());
         this.setStatuscm(Statuscm.agafantPlat);
-        System.out.println("agafarplat");
-        this.platsMenjats+=1;
+        this.platsMenjats += 1;
         areaBuffet.retirarPlat();
-        System.out.println(platsMenjats);
+
 
 
     }
@@ -181,13 +173,11 @@ public class Comensal implements Runnable{
 
     @Override
     public void run() {
-while (true){
 
-    tertulia();
-}
-
+            tertulia();
 
 
 
     }
-}
+
+    }

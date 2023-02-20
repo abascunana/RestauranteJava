@@ -1,17 +1,11 @@
 package Vista;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.Random;
-import java.util.ArrayList;
 
 import Controlador.RestaurantController;
-import Otro.Estatchef;
 
 public class RestaurantView extends JFrame implements Runnable, ActionListener {
     JLabel[] Cocineros = new JLabel[36];
@@ -76,6 +70,8 @@ public class RestaurantView extends JFrame implements Runnable, ActionListener {
             //el espacio en el que se generará la información
             c.weightx = .1;
             getContentPane().add(paneli(), c);
+
+
 
 
 
